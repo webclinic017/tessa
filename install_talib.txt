@@ -1,0 +1,22 @@
+wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
+tar -xzf ta-lib-0.4.0-src.tar.gz
+cd ta-lib/
+./configure --prefix=/usr
+make
+Sudo make install
+pip install numpy
+I had the same issue. See below for what I did to fix it.
+
+installing
+
+wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
+tar -xzf ta-lib-0.4.0-src.tar.gz
+cd ta-lib/
+./configure --prefix=/usr
+make
+sudo make install
+pip install numpy
+
+pip install TA-Lib 
+
+pip install --upgrade --force-reinstall TA-Lib
