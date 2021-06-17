@@ -1,0 +1,27 @@
+
+Triple supertrend buy signal, BANKNIFTY21JUN34900PE at 2021:06:16 09:16:40 IST +0530 ltp: 338.1 
+Triple supertrend buy signal, BANKNIFTY21JUN35000PE at 2021:06:16 09:16:49 IST +0530 ltp: 377.4 
+Triple supertrend buy signal, BANKNIFTY21JUN35100PE at 2021:06:16 09:16:50 IST +0530 ltp: 425.9 
+Triple supertrend buy signal, BANKNIFTY21JUN35200PE at 2021:06:16 09:16:54 IST +0530 ltp: 475 
+Supertrend 8 sell signal, BANKNIFTY21JUN35200PE at 2021:06:16 09:20:21 IST +0530 ltp:  
+Supertrend 8 sell signal, BANKNIFTY21JUN35100PE at 2021:06:16 09:20:23 IST +0530 ltp:  
+Triple Supertrend sell signal, BANKNIFTY21JUN34900PE at 2021:06:16 09:22:11 IST +0530 ltp: 328.5 
+Supertrend 8 sell signal, BANKNIFTY21JUN34900PE at 2021:06:16 09:22:12 IST +0530 ltp:  
+Triple Supertrend sell signal, BANKNIFTY21JUN35100PE at 2021:06:16 09:22:15 IST +0530 ltp: 401.6 
+Supertrend 8 sell signal, BANKNIFTY21JUN35000PE at 2021:06:16 09:23:25 IST +0530 ltp:  
+Triple supertrend buy signal, BANKNIFTY21JUN35200CE at 2021:06:16 09:23:53 IST +0530 ltp: 523.9 
+Triple Supertrend sell signal, BANKNIFTY21JUN35200PE at 2021:06:16 09:24:04 IST +0530 ltp: 417.05 
+Triple supertrend buy signal, BANKNIFTY21JUN35100CE at 2021:06:16 09:24:05 IST +0530 ltp: 587.65 
+Triple supertrend buy signal, BANKNIFTY21JUN34900CE at 2021:06:16 09:24:26 IST +0530 ltp: 712.45 
+Supertrend 8 sell signal, BANKNIFTY21JUN35200CE at 2021:06:16 09:42:15 IST +0530 ltp:  
+Supertrend 8 sell signal, BANKNIFTY21JUN35000CE at 2021:06:16 09:44:43 IST +0530 ltp:  
+Supertrend 8 sell signal, BANKNIFTY21JUN35100CE at 2021:06:16 09:45:14 IST +0530 ltp:  
+Triple Supertrend sell signal, BANKNIFTY21JUN35100CE at 2021:06:16 09:47:09 IST +0530 ltp: 621.05 
+Triple Supertrend sell signal, BANKNIFTY21JUN35200CE at 2021:06:16 09:47:48 IST +0530 ltp: 555 
+Triple Supertrend sell signal, BANKNIFTY21JUN34900CE at 2021:06:16 09:48:07 IST +0530 ltp: 736.15 
+Triple Supertrend sell signal, BANKNIFTY21JUN35000CE at 2021:06:16 09:48:11 IST +0530 ltp: 671.9 
+Triple supertrend buy signal, BANKNIFTY21JUN34900PE at 2021:06:16 09:48:14 IST +0530 ltp: 296.7 
+Triple supertrend buy signal, BANKNIFTY21JUN35100PE at 2021:06:16 09:48:36 IST +0530 ltp: 377.3 
+Triple supertrend buy signal, BANKNIFTY21JUN35200PE at 2021:06:16 09:49:21 IST +0530 ltp: 411.5 
+Triple supertrend buy signal, BANKNIFTY21JUN35000PE at 2021:06:16 09:49:25 IST +0530 ltp: 327.5 
+Triple Supertrend sell signal, BANKNIFTY21JUN34900CE at 2021:06:16 09:50:20 IST +0530 ltp: 738.6 
