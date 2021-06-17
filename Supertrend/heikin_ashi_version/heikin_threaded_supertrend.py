@@ -281,7 +281,7 @@ double_trades = []
 kws = kite.ticker()
 
 
-def on_candle(instrument_token, ticks, candles):
+def on_candle(instrument_token, ticks, candles, volume):
 
     last_candle = candles[instrument_token].iloc[-1]
     candle_open = ( last_candle.open + last_candle.close ) / 2
@@ -405,7 +405,7 @@ def on_ticks(ws, ticks):
 
         if(len(ticks210[instrument_token]) == 210):
 
-            start_new_thread(on_candle, (instrument_token, ticks210[instrument_token], candles[instrument_token]))
+            start_new_thread(on_candle, (instrument_token, ticks210[instrument_token], candles[instrument_token], volume[instrument_token]))
 
             ticks210[instrument_token] = []
             volume[instrument_token] = 0
