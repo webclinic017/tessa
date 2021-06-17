@@ -239,11 +239,11 @@ for strike in range(banknifty_low, banknifty_high, 100):
         tickertape[call_instrument_token] = call_tradingsymbol
         tickertape[put_instrument_token] = put_tradingsymbol
         watchlist.append(call_instrument_token)
-        watchlist.append(put_instrument_token)
+        watchlist.append(call_instrument_token)
 
 print(f"Tickertape: {tickertape}")
 
-ticks210 = {}
+ticks144 = {}
 volume = {}
 candles = {}
 candle_writers = {}
@@ -252,7 +252,7 @@ tick_writers = {}
 
 for instrument_token in watchlist:
 
-    ticks210[instrument_token] = []
+    ticks144[instrument_token] = []
     volume[instrument_token] = 0
     candles[instrument_token] = pd.DataFrame(kite.historical_data(
         instrument_token, previous_trading_day + " 15:00:00", previous_trading_day + " 15:21:00", "minute"))
@@ -281,14 +281,12 @@ double_trades = []
 kws = kite.ticker()
 
 
-def on_candle(instrument_token, ticks, candles, volume):
+def on_candle(instrument_token, ticks, candles):
 
-    last_candle = candles.iloc[-1]
-    candle_open = ( last_candle.open + last_candle.close ) / 2
+    candle_open = ticks[0]
     candle_high = max(ticks)
     candle_low = min(ticks)
     candle_close = ticks[-1]
-    candle_close = (candle_open + candle_high + candle_low + candle_close) / 4
     candle_volume = volume
     candle_data = [get_timestamp(), candle_open, candle_high,
                    candle_low, candle_close, candle_volume]
@@ -296,7 +294,6 @@ def on_candle(instrument_token, ticks, candles, volume):
     candle_dataframe_length = len(candles)
     candles.loc[candle_dataframe_length] = candle_data
     candle_writers[instrument_token].writerow(candle_data)
-    
 
     candle_df = candles.copy()
 
@@ -400,14 +397,14 @@ def on_ticks(ws, ticks):
 
         tick_writers[instrument_token].writerow(
             [get_timestamp(), ltp, last_quantity, ohlc])
-        ticks210[instrument_token].append(ltp)
+        ticks144[instrument_token].append(ltp)
         volume[instrument_token] += last_quantity
 
-        if(len(ticks210[instrument_token]) == 210):
+        if(len(ticks144[instrument_token]) == 144):
 
-            start_new_thread(on_candle, (instrument_token, ticks210[instrument_token], candles[instrument_token], volume[instrument_token]))
+            start_new_thread(on_candle, (instrument_token, ticks144[instrument_token], candles[instrument_token]))
 
-            ticks210[instrument_token] = []
+            ticks144[instrument_token] = []
             volume[instrument_token] = 0
 
 
@@ -423,8 +420,8 @@ def on_connect(ws, response):
 def on_close(ws, code, reason):
     # On connection close stop the event loop.
     # Reconnection will not happen after executing `ws.stop()`
-    for instrument_token in watchlist:
-        candles[instrument_token].to_csv(tickertape[instrument_token]+"_df.csv")
+    # for instrument_token in watchlist:
+    #     candles[instrument_token].to_csv(tickers[instrument_token]+"_df.csv")
     ws.stop()
 
 
