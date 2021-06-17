@@ -239,7 +239,7 @@ for strike in range(banknifty_low, banknifty_high, 100):
         tickertape[call_instrument_token] = call_tradingsymbol
         tickertape[put_instrument_token] = put_tradingsymbol
         watchlist.append(call_instrument_token)
-        watchlist.append(call_instrument_token)
+        watchlist.append(put_instrument_token)
 
 print(f"Tickertape: {tickertape}")
 
@@ -283,7 +283,7 @@ kws = kite.ticker()
 
 def on_candle(instrument_token, ticks, candles, volume):
 
-    last_candle = candles[instrument_token].iloc[-1]
+    last_candle = candles.iloc[-1]
     candle_open = ( last_candle.open + last_candle.close ) / 2
     candle_high = max(ticks)
     candle_low = min(ticks)
@@ -423,8 +423,8 @@ def on_connect(ws, response):
 def on_close(ws, code, reason):
     # On connection close stop the event loop.
     # Reconnection will not happen after executing `ws.stop()`
-    # for instrument_token in watchlist:
-    #     candles[instrument_token].to_csv(tickers[instrument_token]+"_df.csv")
+    for instrument_token in watchlist:
+        candles[instrument_token].to_csv(tickertape[instrument_token]+"_df.csv")
     ws.stop()
 
 

@@ -482,8 +482,8 @@ def on_connect(ws, response):
 def on_close(ws, code, reason):
     # On connection close stop the event loop.
     # Reconnection will not happen after executing `ws.stop()`
-    # for instrument_token in watchlist:
-    #     candles[instrument_token].to_csv(tickers[instrument_token]+"_df.csv")
+    for instrument_token in watchlist:
+        candles[instrument_token].to_csv(tickertape[instrument_token]+"_df.csv")
     ws.stop()
 
 
