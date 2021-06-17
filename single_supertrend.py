@@ -1,7 +1,8 @@
-from kiteconnect import ticker
-from talib import RSI, WMA
+
+
 from _thread import start_new_thread
 import talib
+from talib import RSI, WMA
 import numpy as np
 from pprint import pprint
 from jugaad_trader import Zerodha
