@@ -169,7 +169,7 @@ def SuperTrend(df, period=supertrend_period, multiplier=supertrend_multiplier, o
     return df
 
 def get_timestamp():
-    return datetime.now(IST).strftime('%Y:%m:%d %H:%M:%S %Z %z')
+    return datetime.now(tzoffset(None, 19800)).isoformat(' ', 'seconds')
 
 def get_ltp(instrument_token):
     return kite.ltp(instrument_token)[str(instrument_token)]['last_price']

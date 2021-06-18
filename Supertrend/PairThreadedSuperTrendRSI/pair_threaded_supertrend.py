@@ -7,7 +7,7 @@ from pprint import pprint
 from jugaad_trader import Zerodha
 import pandas as pd
 import pytz
-from datetime import datetime, time, timedelta
+from datetime import datetime, time, timedelta, tzoffset
 import csv
 from pandas.tseries.offsets import BDay
 
@@ -168,16 +168,10 @@ def SUPERTREND(df, period=supertrend_period, multiplier=supertrend_multiplier, o
     return df
 
 def get_timestamp():
-    return datetime.now(IST).strftime('%Y:%m:%d %H:%M:%S %Z %z')
+    return datetime.now(tzoffset(None, 19800)).isoformat(' ', 'seconds')
 
 def get_ltp(instrument_token):
     return kite.ltp(instrument_token)[str(instrument_token)]['last_price']
-
-# get the standard UTC time
-UTC = pytz.utc
-
-# get the time zone of the specified location
-IST = pytz.timezone('Asia/Kolkata')
 
 today = datetime.today()
 previous_trading_day = (datetime.today() - BDay(1)).strftime('%Y-%m-%d')
@@ -318,7 +312,7 @@ def on_candle(instrument_token, ticks, candles, volume):
 
     penultimate_candle = candle_df.iloc[-2]
     last_candle = candle_df.iloc[-1]
-    symbol = tickertape[instrument_token]
+    tradingsymbol = tickertape[instrument_token]
 
     super_candle = supertrend_df.iloc[-1]
     penultimate_super_candle = supertrend_df.iloc[-2]
@@ -332,15 +326,38 @@ def on_candle(instrument_token, ticks, candles, volume):
                             triple_trades.append(instrument_token)
                             last_traded_price = get_ltp(instrument_token)
                             timestamp = get_timestamp()
-                            print(
-                                f"Triple Supertrend buy signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-                            orderbook.write(f"\nTriple Supertrend: Bought {symbol} at {timestamp} ltp: {last_traded_price}")
-                            tradebook.write(
-                                f"\nTriple RSI buy signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-                            triple_orderbook.write(f"\nTriple Supertrend: Bought {symbol} at {timestamp} ltp: {last_traded_price}")
-                            triple_tradebook.write(
-                                    f"\nTriple Supertrend buy signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
+                            buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
+	                                exchange=kite.EXCHANGE_NFO,
+	                                transaction_type=kite.TRANSACTION_TYPE_BUY,
+	                                quantity=25,
+	                                order_type=kite.ORDER_TYPE_LIMIT,
+	                                product=kite.PRODUCT_NRML,
+	                                variety=kite.VARIETY_REGULAR,
+	                                price=last_traded_price,
+	                                )
+                            print(f"Triple Supertrend Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
 
+                            # stoploss_order_id = kite.place_order(tradingsymbol=tickertape[instrument_token],
+	                        #         exchange=kite.EXCHANGE_NFO,
+	                        #         transaction_type=kite.TRANSACTION_TYPE_SELL,
+	                        #         quantity=25,
+	                        #         order_type=kite.ORDER_TYPE_SL,
+	                        #         product=kite.PRODUCT_NRML,
+	                        #         variety=kite.VARIETY_REGULAR,
+                            #         trigger_price=last_traded_price-21,
+	                        #         price=last_traded_price-21,
+	                        #         )
+                            # print(f"Sell Order placed for {tradingsymbol} succesfully orders {stoploss_order_id}")
+                            print(
+                                f"Triple Supertrend buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+                            orderbook.write(f"\nTriple Supertrend: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
+                            tradebook.write(
+                                f"\nTriple RSI buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+                            triple_orderbook.write(f"\nTriple Supertrend: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
+                            triple_tradebook.write(
+                                    f"\nTriple Supertrend buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+    
+    if instrument_token not in triple_trades:
         if penultimate_candle.rsi34 < 34:
             if last_candle.rsi34 >= 34:
                 if penultimate_candle.rsi21 < 21:
@@ -350,101 +367,134 @@ def on_candle(instrument_token, ticks, candles, volume):
                                 triple_trades.append(instrument_token)
                                 last_traded_price = get_ltp(instrument_token)
                                 timestamp = get_timestamp()
+                                buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
+	                                exchange=kite.EXCHANGE_NFO,
+	                                transaction_type=kite.TRANSACTION_TYPE_BUY,
+	                                quantity=25,
+	                                order_type=kite.ORDER_TYPE_LIMIT,
+	                                product=kite.PRODUCT_NRML,
+	                                variety=kite.VARIETY_REGULAR,
+	                                price=last_traded_price,
+	                                )
+                                print(f"Triple RSI Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
+
                                 print(
-                                    f"Triple RSI buy signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-                                orderbook.write(f"\nTriple RSI: Bought {symbol} at {timestamp} ltp: {last_traded_price}")
+                                    f"Triple RSI buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+                                orderbook.write(f"\nTriple RSI: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
                                 tradebook.write(
-                                    f"\nTriple RSI buy signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-                                triple_orderbook.write(f"\nTriple RSI: Bought {symbol} at {timestamp} ltp: {last_traded_price}")
+                                    f"\nTriple RSI buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+                                triple_orderbook.write(f"\nTriple RSI: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
                                 triple_tradebook.write(
-                                    f"\nTriple RSI buy signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
+                                    f"\nTriple RSI buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
 
     elif instrument_token in triple_trades:
         if not super_candle.STX_13:
             triple_trades.remove(instrument_token)
             last_traded_price = get_ltp(instrument_token)
             timestamp = get_timestamp()
-            print(
-                f"Triple Supertrend 13 sell signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-            orderbook.write(f"\nTriple Supertrend: Supertrend 13 - Sold {symbol} at {timestamp} ltp: {last_traded_price}")
-            tradebook.write(
-                f"\nTriple Supertrend 13 sell signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-            triple_orderbook.write(f"\nTriple Supertrend: Supertrend 13 - Sold {symbol} at {timestamp} ltp: {last_traded_price}")
-            triple_tradebook.write(
-                f"\nTriple Supertrend 13 sell signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
+            sell_order_id = kite.place_order(tradingsymbol=tickertape[instrument_token],
+                    exchange=kite.EXCHANGE_NFO,
+                    transaction_type=kite.TRANSACTION_TYPE_SELL,
+                    quantity=25,
+                    order_type=kite.ORDER_TYPE_LIMIT,
+                    product=kite.PRODUCT_NRML,
+                    variety=kite.VARIETY_REGULAR,
+                    price=last_traded_price,
+                    )
+            print(f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
 
-        elif penultimate_candle.rsi21 > 79:
+            print(
+                f"Triple Supertrend 13 sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+            orderbook.write(f"\nTriple Supertrend: Supertrend 13 - Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
+            tradebook.write(
+                f"\nTriple Supertrend 13 sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+            triple_orderbook.write(f"\nTriple Supertrend: Supertrend 13 - Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
+            triple_tradebook.write(
+                f"\nTriple Supertrend 13 sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+
+    elif instrument_token in triple_trades:
+        if penultimate_candle.rsi21 > 79:
             if last_candle.rsi21 <= 79:
                 triple_trades.remove(instrument_token)
                 last_traded_price = get_ltp(instrument_token)
                 timestamp = get_timestamp()
+                sell_order_id = kite.place_order(tradingsymbol=tickertape[instrument_token],
+                    exchange=kite.EXCHANGE_NFO,
+                    transaction_type=kite.TRANSACTION_TYPE_SELL,
+                    quantity=25,
+                    order_type=kite.ORDER_TYPE_LIMIT,
+                    product=kite.PRODUCT_NRML,
+                    variety=kite.VARIETY_REGULAR,
+                    price=last_traded_price,
+                    )
+                print(f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                 print(
-                    f"Triple RSI 21 sell signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-                orderbook.write(f"\nTriple RSI: RSI 21 - Sold {symbol} at {timestamp} ltp: {last_traded_price}")
+                    f"Triple RSI 21 sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+                orderbook.write(f"\nTriple RSI: RSI 21 - Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
                 tradebook.write(
-                    f"\nTriple RSI sell signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-                triple_orderbook.write(f"\nTriple RSI: RSI 21 - Sold {symbol} at {timestamp} ltp: {last_traded_price}")
+                    f"\nTriple RSI sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+                triple_orderbook.write(f"\nTriple RSI: RSI 21 - Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
                 triple_tradebook.write(
-                f"\nTriple RSI sell signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
+                f"\nTriple RSI sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
 
-    if instrument_token not in double_trades:
-        if super_candle.STX_13:
-            if super_candle.STX_8:
-                if last_candle.ema21 < candle_close:
-                    double_trades.append(instrument_token)
-                    last_traded_price = get_ltp(instrument_token)
-                    timestamp = get_timestamp()
-                    print(
-                        f"Double Supertrend buy signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-                    orderbook.write(f"\nDouble Supertrend: Bought {symbol} at {timestamp} ltp: {last_traded_price}")
-                    tradebook.write(
-                        f"\nDouble Supertrend buy signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-                    double_orderbook.write(f"\nDouble Supertrend: Bought {symbol} at {timestamp} ltp: {last_traded_price}")
-                    double_tradebook.write(
-                        f"\nDouble Supertrend buy signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
+    # if instrument_token not in double_trades:
+    #     if super_candle.STX_13:
+    #         if super_candle.STX_8:
+    #             if last_candle.ema21 < candle_close:
+    #                 double_trades.append(instrument_token)
+    #                 last_traded_price = get_ltp(instrument_token)
+    #                 timestamp = get_timestamp()
+    #                 print(
+    #                     f"Double Supertrend buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+    #                 orderbook.write(f"\nDouble Supertrend: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
+    #                 tradebook.write(
+    #                     f"\nDouble Supertrend buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+    #                 double_orderbook.write(f"\nDouble Supertrend: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
+    #                 double_tradebook.write(
+    #                     f"\nDouble Supertrend buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
 
-        if penultimate_candle.rsi21 < 21:
-            if last_candle.rsi21 >= 21:
-                if penultimate_candle.rsi13 < 13:
-                    if last_candle.rsi13 >= 13:
-                        double_trades.append(instrument_token)
-                        last_traded_price = get_ltp(instrument_token)
-                        timestamp = get_timestamp()
-                        print(
-                            f"Double RSI buy signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-                        orderbook.write(f"\nDouble RSI: Bought {symbol} at {timestamp} ltp: {last_traded_price}")
-                        tradebook.write(
-                            f"\nDouble RSI buy signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-                        double_orderbook.write(f"\nDouble RSI: Bought {symbol} at {timestamp} ltp: {last_traded_price}")
-                        double_tradebook.write(
-                            f"\nDouuble RSI buy signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
+    #     if penultimate_candle.rsi21 < 21:
+    #         if last_candle.rsi21 >= 21:
+    #             if penultimate_candle.rsi13 < 13:
+    #                 if last_candle.rsi13 >= 13:
+    #                     double_trades.append(instrument_token)
+    #                     last_traded_price = get_ltp(instrument_token)
+    #                     timestamp = get_timestamp()
+    #                     print(
+    #                         f"Double RSI buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+    #                     orderbook.write(f"\nDouble RSI: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
+    #                     tradebook.write(
+    #                         f"\nDouble RSI buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+    #                     double_orderbook.write(f"\nDouble RSI: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
+    #                     double_tradebook.write(
+    #                         f"\nDouuble RSI buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
 
-    elif instrument_token in double_trades:
-        if not super_candle.STX_8:
-            double_trades.remove(instrument_token)
-            last_traded_price = get_ltp(instrument_token)
-            timestamp = get_timestamp()
-            print(
-                f"Double Supertrend sell signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-            orderbook.write(f"\nDouble Supertrend: Sold {symbol} at {timestamp} ltp: {last_traded_price}")
-            tradebook.write(
-                f"\nDouble Supertrend sell signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-            double_orderbook.write(f"\nDouble Supertrend: Sold {symbol} at {timestamp} ltp: {last_traded_price}")
-            double_tradebook.write(
-                f"\nDouble Supertrend sell signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
+    # elif instrument_token in double_trades:
+    #     if not super_candle.STX_8:
+    #         double_trades.remove(instrument_token)
+    #         last_traded_price = get_ltp(instrument_token)
+    #         timestamp = get_timestamp()
+    #         print(
+    #             f"Double Supertrend sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+    #         orderbook.write(f"\nDouble Supertrend: Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
+    #         tradebook.write(
+    #             f"\nDouble Supertrend sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+    #         double_orderbook.write(f"\nDouble Supertrend: Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
+    #         double_tradebook.write(
+    #             f"\nDouble Supertrend sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
 
-        elif penultimate_candle.rsi13 >= 87:
-            if last_candle.rsi13 <= 87:
-                last_traded_price = get_ltp(instrument_token)
-                timestamp = get_timestamp()
-                print(
-                    f"Double RSI sell signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-                orderbook.write(f"\nDouble RSI: Sold {symbol} at {timestamp} ltp: {last_traded_price}")
-                tradebook.write(
-                    f"\nDouble RSI sell signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
-                double_orderbook.write(f"\nDouble RSI: Sold {symbol} at {timestamp} ltp: {last_traded_price}")
-                double_tradebook.write(
-                    f"\nDouble RSI sell signal, {symbol} at {timestamp} ltp: {last_traded_price} ")
+    #     elif penultimate_candle.rsi13 >= 87:
+    #         if last_candle.rsi13 <= 87:
+    #             last_traded_price = get_ltp(instrument_token)
+    #             timestamp = get_timestamp()
+    #             print(
+    #                 f"Double RSI sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+    #             orderbook.write(f"\nDouble RSI: Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
+    #             tradebook.write(
+    #                 f"\nDouble RSI sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+    #             double_orderbook.write(f"\nDouble RSI: Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
+    #             double_tradebook.write(
+    #                 f"\nDouble RSI sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
 
 
 def on_ticks(ws, ticks):

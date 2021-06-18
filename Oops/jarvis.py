@@ -250,22 +250,24 @@ def on_ticks(ws, ticks):
     # Callback to receive ticks.
     for tick in ticks:
 
-        instrument_token = tick['instrument_token']
-        ltp = tick['last_price']
-        ohlc = tick['ohlc']
-        last_quantity = tick['last_quantity']
+        tickers(tick['instrument_token']).write_tick(tick)
 
-        tick_writers[instrument_token].writerow(
-            [get_timestamp(), ltp, last_quantity, ohlc])
-        ticks210[instrument_token].append(ltp)
-        volume[instrument_token] += last_quantity
+        # instrument_token = tick['instrument_token']
+        # ltp = tick['last_price']
+        # ohlc = tick['ohlc']
+        # last_quantity = tick['last_quantity']
 
-        if(len(ticks210[instrument_token]) == 210):
+        # tick_writers[instrument_token].writerow(
+        #     [get_timestamp(), ltp, last_quantity, ohlc])
+        # ticks210[instrument_token].append(ltp)
+        # volume[instrument_token] += last_quantity
 
-            start_new_thread(on_candle, (instrument_token, ticks210[instrument_token], candles[instrument_token]))
+        # if(len(ticks210[instrument_token]) == 210):
 
-            ticks210[instrument_token] = []
-            volume[instrument_token] = 0
+        #     start_new_thread(on_candle, (instrument_token, ticks210[instrument_token], candles[instrument_token]))
+
+        #     ticks210[instrument_token] = []
+        #     volume[instrument_token] = 0
 
 
 def on_connect(ws, response):
@@ -280,8 +282,8 @@ def on_connect(ws, response):
 def on_close(ws, code, reason):
     # On connection close stop the event loop.
     # Reconnection will not happen after executing `ws.stop()`
-    # for instrument_token in watchlist:
-    #     candles[instrument_token].to_csv(tickers[instrument_token]+"_df.csv")
+    for instrument_token in watchlist:
+        candles[instrument_token].to_csv(tickertape[instrument_token]+"_df.csv")
     ws.stop()
 
 
