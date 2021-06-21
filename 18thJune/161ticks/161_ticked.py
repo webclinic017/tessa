@@ -244,7 +244,6 @@ tickertape[put_instrument_token] = put_tradingsymbol
 watchlist.append(call_instrument_token)
 watchlist.append(put_instrument_token)
 
-print(f"Tickertape: {tickertape}")
 
 ticks210 = {}
 volume = {}
@@ -280,7 +279,7 @@ open_trades = []
 triple_trades = []
 double_trades = []
 
-
+print(f"Tickertape: {tickertape}")
 kws = kite.ticker()
 
 
