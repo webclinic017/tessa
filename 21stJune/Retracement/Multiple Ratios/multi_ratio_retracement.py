@@ -138,8 +138,6 @@ for instrument_token in watchlist:
         open(tickertape[instrument_token] + "_ticks.csv", "w"))
 
 
-print(fibonacci)
-
 tradebook = open('tradebook.txt', "w")
 orderbook = open("orderbook.txt", "w")
 
