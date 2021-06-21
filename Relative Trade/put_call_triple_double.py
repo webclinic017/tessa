@@ -9,14 +9,10 @@ from dateutil.tz import tzoffset
 import csv
 from ticker import Ticker
 from helpers import *
+from helpers import get_ltp, get_timestamp
 from ticker import *
 
 print("Om Namahshivaya:")
-
-
-
-
-
 
 
 instrument_token = ''
