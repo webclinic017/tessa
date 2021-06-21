@@ -465,7 +465,6 @@ def on_ticks(ws, ticks):
         if(len(ticks210[instrument_token]) == 210):
 
             start_new_thread(on_candle, (instrument_token, ticks210[instrument_token], candles[instrument_token], volume[instrument_token]))
-
             ticks210[instrument_token] = []
             volume[instrument_token] = 0
 
