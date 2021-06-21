@@ -1,6 +1,3 @@
-
-
-
 from _thread import start_new_thread
 import talib
 from talib import RSI, WMA
@@ -9,7 +6,7 @@ from pprint import pprint
 from jugaad_trader import Zerodha
 import pandas as pd
 import pytz
-from datetime import datetime, timedelta, tzinfo
+from datetime import datetime, timedelta
 import csv
 from pandas.tseries.offsets import BDay
 from dateutil.tz import tzoffset
@@ -41,10 +38,16 @@ historical_data = kite.historical_data(
 
 print(type(historical_data))
 previous_trading_day = historical_data['date']
+print(previous_trading_day + timedelta(hours=15))
+print(type(previous_trading_day))
+
+data = pd.DataFrame(kite.historical_data(
+    banknifty_instrument_token, previous_trading_day, today, "15minute"))
+print(data)
 
 # tzinfo = tzoffset(None, 19800)
-print(datetime.now(tzoffset(None, 19800)).isoformat(' ', 'seconds'))
-print(kite.historical_data(
-    banknifty_instrument_token, previous_trading_day, today, "day")[-1])
+# print(datetime.now(tzoffset(None, 19800)).isoformat(' ', 'seconds'))
+# print(kite.historical_data(
+#     banknifty_instrument_token, previous_trading_day, today, "day")[-1])
 
 
