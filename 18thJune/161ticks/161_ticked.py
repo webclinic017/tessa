@@ -1,15 +1,13 @@
-from kiteconnect import ticker
 from talib import RSI, WMA
 from _thread import start_new_thread
 import talib
 import numpy as np
-from pprint import pprint
 from jugaad_trader import Zerodha
 import pandas as pd
 import pytz
-from datetime import datetime, time, timedelta, tzoffset
+from datetime import datetime, timedelta
+from dateutil.tz import tzoffset
 import csv
-from pandas.tseries.offsets import BDay
 
 print("Om Namahshivaya:")
 
@@ -174,7 +172,6 @@ def get_ltp(instrument_token):
     return kite.ltp(instrument_token)[str(instrument_token)]['last_price']
 
 today = datetime.today()
-previous_trading_day = (datetime.today() - BDay(1)).strftime('%Y-%m-%d')
 
 kite = Zerodha()
 
@@ -200,13 +197,15 @@ kite.set_access_token()
 
 banknifty_instrument_token = 260105
 
-previous_trading_day_banknifty_ohlc = kite.historical_data(
-    banknifty_instrument_token, previous_trading_day, previous_trading_day, "day")[0]
-banknifty_close = round(previous_trading_day_banknifty_ohlc['close'])
+previous_session_ohlc = kite.historical_data(
+    banknifty_instrument_token, today - timedelta(days=21), today, "day")[-1]
+
+previous_session_date = previous_session_ohlc['date']
+banknifty_close = round(previous_session_ohlc['close'])
 banknifty_close = banknifty_close - (banknifty_close % 100)
-banknifty_high = round(previous_trading_day_banknifty_ohlc['high'])
+banknifty_high = round(previous_session_ohlc['high'])
 banknifty_high = banknifty_high - (banknifty_high % 100)
-banknifty_low = round(previous_trading_day_banknifty_ohlc['low'])
+banknifty_low = round(previous_session_ohlc['low'])
 banknifty_low = banknifty_low - (banknifty_low % 100)
 
 nfo_instruments = pd.DataFrame(kite.instruments("NFO"))
@@ -259,7 +258,7 @@ for instrument_token in watchlist:
     ticks210[instrument_token] = []
     volume[instrument_token] = 0
     candles[instrument_token] = pd.DataFrame(kite.historical_data(
-        instrument_token, previous_trading_day + " 15:00:00", previous_trading_day + " 15:21:00", "minute"))
+        instrument_token, previous_session_date + timedelta(hours=15), previous_session_date + timedelta(hours=15, minutes=21), "minute"))
     candle_writers[instrument_token] = csv.writer(
         open(tickertape[instrument_token] + ".csv", "w"))
     tick_writers[instrument_token] = csv.writer(
