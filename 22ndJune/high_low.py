@@ -24,7 +24,7 @@ class Ticker:
         self.tick_store = []  # store the last_traded_prices
         self.volume = 0  # store the volume of the current_candle
         self.candles = DataFrame(kite.historical_data(
-            instrument_token, previous_session_date + timedelta(hours=15), datetime.now().replace(second=0, microsecond=0), "3minute"))
+            instrument_token, previous_session_date + timedelta(hours=15), datetime.now(tzoffset(None, 19800)), "3minute"))
         self.tick_writer = writer(open(tradingsymbol + "_ticks.csv", "w"))
         self.open_trade = False
         self.log = open(self.tradingsymbol + "_log.txt", "w")
@@ -56,10 +56,9 @@ class Ticker:
         candle_data = [get_timestamp(), candle_open, candle_high,
                        candle_low, candle_close, candle_volume]
 
-        candle_dataframe_length = len(self.candles)
+        candle_dataframe_length = len(self.candles.index)
         self.candles.loc[candle_dataframe_length] = candle_data
-        self.candle_writer.writerow(candle_data)
-
+        print(self.candles.tail())
         self.tick_store = []
         self.volume = 0
         start_new_thread(on_candle, (self.instrument_token,))
@@ -238,7 +237,6 @@ banknifty_instrument_token = 260105
 historical = kite.historical_data(
     banknifty_instrument_token, today - timedelta(days=314), today - timedelta(days=1), "day")
 historical_data = DataFrame(historical)
-print(historical_data.tail())
 
 historical_data["ema210"] = EMA(historical_data.close, timeperiod=210)
 historical_data["ema21"] = EMA(historical_data.close, timeperiod=21)
@@ -326,6 +324,8 @@ def on_candle(instrument_token):
     candles = ticker.get_candles().copy()
     relative_candles = tickers[instrument_token].get_relative_ticker(
     ).get_candles().copy()
+    print(candles.tail())
+    print(relative_candles.tail())
 
     candles['rsi13'] = RSI(candles['close'], timeperiod=13)
     candles['rsi21'] = RSI(candles['close'], timeperiod=21)
@@ -376,7 +376,8 @@ def on_candle(instrument_token):
                                     orderbook.write(
                                         f"\nTriple Supertrend: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
 
-                                except:
+                                except Exception as e:
+                                    print(e)
                                     print(
                                         f"Eroor placing Triple Supertrend Buy Order for {tradingsymbol} succesfully orders {buy_order_id}")
 
@@ -427,7 +428,9 @@ def on_candle(instrument_token):
                                     orderbook.write(
                                         f"\nRelative Supertrend: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
 
-                                except:
+                                except Exception as e:
+                                    print(e)
+
                                     print(
                                         f"Error placing Relative Supertrend Buy Order for {tradingsymbol} succesfully orders {buy_order_id}")
 
@@ -465,7 +468,9 @@ def on_candle(instrument_token):
                                 orderbook.write(
                                     f"\nRelative Supertrend: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
 
-                            except:
+                            except Exception as e:
+                                print(e)
+
                                 print(
                                     f"Error placing Relative Supertrend Buy Order for {tradingsymbol} succesfully orders {buy_order_id}")
 
@@ -500,7 +505,9 @@ def on_candle(instrument_token):
                                     f"Triple RSI Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
                                 orderbook.write(
                                     f"\nTriple RSI: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
-                            except:
+                            except Exception as e:
+                                print(e)
+
                                 print(
                                     f"Error placing Triple RSI Buy Order for {tradingsymbol} succesfully orders {buy_order_id}")
                             print(
@@ -532,7 +539,9 @@ def on_candle(instrument_token):
                         f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                     orderbook.write(
                         f"\nTriple Supertrend: Supertrend 13 - Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
-                except:
+                except Exception as e:
+                    print(e)
+
                     print(
                         f"Error Triple Supertrend 13 placing Sell Order for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
 
@@ -565,7 +574,9 @@ def on_candle(instrument_token):
                             f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                         orderbook.write(
                             f"\nRelative Supertrend: Supertrend 13 - Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
-                    except:
+                    except Exception as e:
+                        print(e)
+
                         print(
                             f"Error placing Sell Order for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                     print(
@@ -597,7 +608,9 @@ def on_candle(instrument_token):
                             f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                         orderbook.write(
                             f"\nTriple RSI: RSI 13 - Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
-                    except:
+                    except Exception as e:
+                        print(e)
+
                         print(
                             f"Error placing Sell Order for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                     print(
@@ -629,7 +642,9 @@ def on_candle(instrument_token):
                             f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                         orderbook.write(
                             f"\nRelative RSI: RSI 21 - Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
-                    except:
+                    except Exception as e:
+                        print(e)
+
                         print(
                             f"Error placing Sell Order for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                     print(
@@ -638,7 +653,9 @@ def on_candle(instrument_token):
                         f"\nTriple Relative RSI sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
                     tradebook.write(
                         f"\nTriple Relative RSI sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
-    except:
+    except Exception as e:
+        print(e)
+
         print("Error in execution")
         pass
 
