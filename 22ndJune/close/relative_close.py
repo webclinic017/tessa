@@ -58,7 +58,6 @@ class Ticker:
 
         candle_dataframe_length = len(self.candles)
         self.candles.loc[candle_dataframe_length] = candle_data
-        self.candle_writer.writerow(candle_data)
 
         self.tick_store = []
         self.volume = 0
