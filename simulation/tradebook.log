@@ -1,0 +1,10 @@
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-11+16%3A09%3A02&to=2021-06-21+16%3A09%3A02&interval=day&continuous=0&oi=0 HTTP/1.1" 403 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-11+16%3A09%3A06&to=2021-06-21+16%3A09%3A06&interval=day&continuous=0&oi=0 HTTP/1.1" 403 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-11+16%3A09%3A40&to=2021-06-21+16%3A09%3A40&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4571
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 661342
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739586/3minute?instrument_token=12739586&from=2021-06-21+15%3A00%3A00&to=2021-06-21+16%3A09%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739842/3minute?instrument_token=12739842&from=2021-06-21+15%3A00%3A00&to=2021-06-21+16%3A09%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None

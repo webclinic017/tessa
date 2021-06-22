@@ -27,8 +27,7 @@ class Ticker:
         self.tick_store = []  # store the last_traded_prices
         self.volume = 0  # store the volume of the current_candle
         self.candles = DataFrame(kite.historical_data(
-            instrument_token, previous_session_date + timedelta(hours=15), previous_session_date + timedelta(hours=15, minutes=21), "minute"))
-        self.candle_writer = writer(open(tradingsymbol + ".csv", "w"))
+            instrument_token, previous_session_date + timedelta(hours=15), datetime.now().replace(second=0, microsecond=0), "3minute"))
         self.tick_writer = writer(open(tradingsymbol + "_ticks.csv", "w"))
         self.open_trade = False
         self.log = open(self.tradingsymbol + "_log.txt", "w")
@@ -427,6 +426,46 @@ def on_candle(instrument_token):
                                     f"\nRelative Supertrend buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
                                 tradebook.write(
                                     f"\nRelative Supertrend buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+
+        if instrument_token not in open_trades:
+
+            if not last_relative_candle.STX_13:
+                if not last_relative_candle.STX_8:
+                    if last_candle.STX_13:
+                        if last_candle.STX_8:
+
+                            try:
+
+                                last_traded_price = get_ltp(
+                                    instrument_token)
+                                timestamp = get_timestamp()
+                                buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
+                                                                exchange=kite.EXCHANGE_NFO,
+                                                                transaction_type=kite.TRANSACTION_TYPE_BUY,
+                                                                quantity=25,
+                                                                order_type=kite.ORDER_TYPE_LIMIT,
+                                                                product=kite.PRODUCT_NRML,
+                                                                variety=kite.VARIETY_REGULAR,
+                                                                price=last_traded_price,
+                                                                )
+                                open_trades.append(instrument_token)
+                                print(
+                                    f"Relative Supertrend Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
+                                orderbook.write(
+                                    f"\nRelative Supertrend: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
+
+                            except:
+                                print(
+                                    f"Error placing Relative Supertrend Buy Order for {tradingsymbol} succesfully orders {buy_order_id}")
+
+                            print(
+                                f"Relative Supertrend buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+                            ticker.log.write(
+                                f"\nRelative Supertrend buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+                            tradebook.write(
+                                f"\nRelative Supertrend buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
+
+
 
         if instrument_token not in open_trades:
             if penultimate_candle.rsi21 < 21:
