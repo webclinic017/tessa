@@ -6,12 +6,15 @@ from talib import RSI, WMA, EMA
 from _thread import start_new_thread
 import talib
 import numpy as np
-import pandas as pd
+import modin.pandas as pd
 import pytz
 from datetime import datetime, timedelta
 from dateutil.tz import tzoffset
 import csv
 import logging
+
+import ray
+ray.init()
 
 print("Om Namahshivaya:")
 logging.basicConfig(filename='tradebook.log', level=logging.DEBUG)

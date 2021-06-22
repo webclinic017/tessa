@@ -1,11 +1,4 @@
 import csv
-
-
-
-
-
-
-
 from datetime import datetime
 from pandas import DataFrame
 from csv import writer
@@ -281,11 +274,12 @@ strikes = []
 
 monthly_options = banknifty_instruments.loc[banknifty_instruments.strike == banknifty_close, [
     'instrument_token', 'tradingsymbol']].head(2)
-call_instrument_token, call_tradingsymbol = monthly_options.values[0]
-put_instrument_token, put_tradingsymbol = monthly_options.values[1]
+call_instrument_token, call_tradingsymbol = (12739586, 'BANKNIFTY21JUN34600CE')
+put_instrument_token, put_tradingsymbol = (12739842, 'BANKNIFTY21JUN34600PE')
 tickertape[call_instrument_token] = call_tradingsymbol
 tickertape[put_instrument_token] = put_tradingsymbol
 watchlist = (call_instrument_token, put_instrument_token)
+
 
 tickers = {}
 
@@ -310,6 +304,7 @@ open_trades = []
 
 
 print(f"Tickertape: {tickertape}")
+
 kws = kite.ticker()
 
 
@@ -320,14 +315,12 @@ def on_candle(instrument_token):
     relative_candles = tickers[instrument_token].get_relative_ticker(
     ).get_candles().copy()
 
-
     candles['rsi13'] = RSI(candles['close'], timeperiod=13)
     candles['rsi21'] = RSI(candles['close'], timeperiod=21)
     candles['ema21'] = EMA(candles['close'], timeperiod=21)
     candles = SUPERTREND(candles, period=21, multiplier=3)
     candles = SUPERTREND(candles, period=13, multiplier=2)
     candles = SUPERTREND(candles, period=8, multiplier=1)
-
 
     penultimate_candle = candles.iloc[-2]
     last_candle = candles.iloc[-1]
@@ -343,7 +336,6 @@ def on_candle(instrument_token):
     last_relative_candle = relative_candles.iloc[-1]
     penultimate_relative_candle = relative_candles.iloc[-2]
 
-
     if instrument_token not in open_trades:
         if not penultimate_candle.STX_13:
             if not penultimate_candle.STX_8:
@@ -353,8 +345,9 @@ def on_candle(instrument_token):
 
                             try:
 
-                                last_traded_price = (last_candle.low + last_candle.close) / 2
-                                timestamp = last_candle.date
+                                last_traded_price = get_ltp(
+                                    instrument_token)
+                                timestamp = get_timestamp()
                                 buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
                                                                 exchange=kite.EXCHANGE_NFO,
                                                                 transaction_type=kite.TRANSACTION_TYPE_BUY,
@@ -371,7 +364,7 @@ def on_candle(instrument_token):
                                     f"\nTriple Supertrend: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
 
                             except Exception as e:
-                                # print (e)
+                                print(e)
                                 print(
                                     f"Eroor placing Triple Supertrend Buy Order for {tradingsymbol}")
 
@@ -404,8 +397,9 @@ def on_candle(instrument_token):
 
                             try:
 
-                                last_traded_price = (last_candle.high + last_candle.close) / 2
-                                timestamp = last_candle.date
+                                last_traded_price = get_ltp(
+                                    instrument_token)
+                                timestamp = get_timestamp()
                                 buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
                                                                 exchange=kite.EXCHANGE_NFO,
                                                                 transaction_type=kite.TRANSACTION_TYPE_BUY,
@@ -422,7 +416,8 @@ def on_candle(instrument_token):
                                     f"\nRelative Supertrend: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
 
                             except Exception as e:
-                                print (e)
+                                print(e)
+
                                 print(
                                     f"Error placing Relative Supertrend Buy Order for {tradingsymbol}")
 
@@ -444,7 +439,7 @@ def on_candle(instrument_token):
 
                             last_traded_price = get_ltp(
                                 instrument_token)
-                            timestamp = last_candle.date
+                            timestamp = get_timestamp()
                             buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
                                                             exchange=kite.EXCHANGE_NFO,
                                                             transaction_type=kite.TRANSACTION_TYPE_BUY,
@@ -461,7 +456,8 @@ def on_candle(instrument_token):
                                 f"\nRelative Supertrend: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
 
                         except Exception as e:
-                            # print (e)
+                            print(e)
+
                             print(
                                 f"Error placing Relative Supertrend Buy Order for {tradingsymbol}")
 
@@ -472,8 +468,6 @@ def on_candle(instrument_token):
                         tradebook.write(
                             f"\nRelative Supertrend buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
 
-
-
     if instrument_token not in open_trades:
         if penultimate_candle.rsi21 < 21:
             if last_candle.rsi21 >= 21:
@@ -482,8 +476,8 @@ def on_candle(instrument_token):
 
                         try:
 
-                            last_traded_price = (last_candle.high + last_candle.close) / 2
-                            timestamp = last_candle.date
+                            last_traded_price = get_ltp(instrument_token)
+                            timestamp = get_timestamp()
                             buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
                                                             exchange=kite.EXCHANGE_NFO,
                                                             transaction_type=kite.TRANSACTION_TYPE_BUY,
@@ -499,7 +493,8 @@ def on_candle(instrument_token):
                             orderbook.write(
                                 f"\nTriple RSI: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
                         except Exception as e:
-                            # print (e)
+                            print(e)
+
                             print(
                                 f"Error placing Triple RSI Buy Order for {tradingsymbol}")
                         print(
@@ -515,17 +510,17 @@ def on_candle(instrument_token):
 
             try:
 
-                last_traded_price = (last_candle.low + last_candle.close) / 2
-                timestamp = last_candle.date
+                last_traded_price = get_ltp(instrument_token)
+                timestamp = get_timestamp()
                 sell_order_id = kite.place_order(tradingsymbol=tickertape[instrument_token],
-                                                exchange=kite.EXCHANGE_NFO,
-                                                transaction_type=kite.TRANSACTION_TYPE_SELL,
-                                                quantity=25,
-                                                order_type=kite.ORDER_TYPE_LIMIT,
-                                                product=kite.PRODUCT_NRML,
-                                                variety=kite.VARIETY_AMO,
-                                                price=last_traded_price,
-                                                )
+                                                    exchange=kite.EXCHANGE_NFO,
+                                                    transaction_type=kite.TRANSACTION_TYPE_SELL,
+                                                    quantity=25,
+                                                    order_type=kite.ORDER_TYPE_LIMIT,
+                                                    product=kite.PRODUCT_NRML,
+                                                    variety=kite.VARIETY_AMO,
+                                                    price=last_traded_price,
+                                                    )
                 open_trades.remove(instrument_token)
                 print(
                     f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
@@ -535,7 +530,7 @@ def on_candle(instrument_token):
                 print(e)
 
                 print(
-                    f"Error Triple Supertrend 13 placing Sell Order for {tradingsymbol}")
+                    f"Error placing Triple Supertrend 13 Sell Order for {tradingsymbol}")
 
             print(
                 f"Triple Supertrend 13 sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
@@ -550,26 +545,27 @@ def on_candle(instrument_token):
 
                 try:
 
-                    last_traded_price = (last_candle.low + last_candle.close) / 2
-                    timestamp = last_candle.date
+                    last_traded_price = get_ltp(instrument_token)
+                    timestamp = get_timestamp()
                     sell_order_id = kite.place_order(tradingsymbol=tickertape[instrument_token],
-                                                    exchange=kite.EXCHANGE_NFO,
-                                                    transaction_type=kite.TRANSACTION_TYPE_SELL,
-                                                    quantity=25,
-                                                    order_type=kite.ORDER_TYPE_LIMIT,
-                                                    product=kite.PRODUCT_NRML,
-                                                    variety=kite.VARIETY_AMO,
-                                                    price=last_traded_price,
-                                                    )
+                                                        exchange=kite.EXCHANGE_NFO,
+                                                        transaction_type=kite.TRANSACTION_TYPE_SELL,
+                                                        quantity=25,
+                                                        order_type=kite.ORDER_TYPE_LIMIT,
+                                                        product=kite.PRODUCT_NRML,
+                                                        variety=kite.VARIETY_AMO,
+                                                        price=last_traded_price,
+                                                        )
                     open_trades.remove(instrument_token)
                     print(
                         f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                     orderbook.write(
                         f"\nRelative Supertrend: Supertrend 13 - Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
                 except Exception as e:
-                    # print (e)
+                    print(e)
+
                     print(
-                        f"Error placing Sell Order for {tradingsymbol} ")
+                        f"Error placing Sell Order for {tradingsymbol}")
                 print(
                     f"Relative Double Supertrend Sell signal for {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
                 ticker.log.write(
@@ -583,24 +579,25 @@ def on_candle(instrument_token):
 
                 try:
 
-                    last_traded_price = (last_candle.low + last_candle.close) / 2
-                    timestamp = last_candle.date
+                    last_traded_price = get_ltp(instrument_token)
+                    timestamp = get_timestamp()
                     sell_order_id = kite.place_order(tradingsymbol=tickertape[instrument_token],
-                                                    exchange=kite.EXCHANGE_NFO,
-                                                    transaction_type=kite.TRANSACTION_TYPE_SELL,
-                                                    quantity=25,
-                                                    order_type=kite.ORDER_TYPE_LIMIT,
-                                                    product=kite.PRODUCT_NRML,
-                                                    variety=kite.VARIETY_AMO,
-                                                    price=last_traded_price,
-                                                    )
+                                                        exchange=kite.EXCHANGE_NFO,
+                                                        transaction_type=kite.TRANSACTION_TYPE_SELL,
+                                                        quantity=25,
+                                                        order_type=kite.ORDER_TYPE_LIMIT,
+                                                        product=kite.PRODUCT_NRML,
+                                                        variety=kite.VARIETY_AMO,
+                                                        price=last_traded_price,
+                                                        )
                     open_trades.remove(instrument_token)
                     print(
                         f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                     orderbook.write(
                         f"\nTriple RSI: RSI 13 - Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
                 except Exception as e:
-                    # print (e)
+                    print(e)
+
                     print(
                         f"Error placing Sell Order for {tradingsymbol}")
                 print(
@@ -616,24 +613,25 @@ def on_candle(instrument_token):
 
                 try:
 
-                    last_traded_price = (last_candle.low + last_candle.close) / 2
-                    timestamp = last_candle.date
+                    last_traded_price = get_ltp(instrument_token)
+                    timestamp = get_timestamp()
                     sell_order_id = kite.place_order(tradingsymbol=tickertape[instrument_token],
-                                                    exchange=kite.EXCHANGE_NFO,
-                                                    transaction_type=kite.TRANSACTION_TYPE_SELL,
-                                                    quantity=25,
-                                                    order_type=kite.ORDER_TYPE_LIMIT,
-                                                    product=kite.PRODUCT_NRML,
-                                                    variety=kite.VARIETY_AMO,
-                                                    price=last_traded_price,
-                                                    )
+                                                        exchange=kite.EXCHANGE_NFO,
+                                                        transaction_type=kite.TRANSACTION_TYPE_SELL,
+                                                        quantity=25,
+                                                        order_type=kite.ORDER_TYPE_LIMIT,
+                                                        product=kite.PRODUCT_NRML,
+                                                        variety=kite.VARIETY_AMO,
+                                                        price=last_traded_price,
+                                                        )
                     open_trades.remove(instrument_token)
                     print(
                         f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                     orderbook.write(
                         f"\nRelative RSI: RSI 21 - Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
                 except Exception as e:
-                    # print (e)
+                    print(e)
+
                     print(
                         f"Error placing Sell Order for {tradingsymbol}")
                 print(
@@ -642,7 +640,6 @@ def on_candle(instrument_token):
                     f"\nTriple Relative RSI sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
                 tradebook.write(
                     f"\nTriple Relative RSI sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
-
 
 
 # def on_ticks(ws, ticks):
@@ -683,7 +680,7 @@ def on_candle(instrument_token):
 # # You have to use the pre-defined callbacks to manage subscriptions.
 # kws.connect()
 
-stream = pd.read_csv('/workspaces/tessa/simulation/streaming_data.csv')
+stream = pd.read_csv('simulation/streaming_data.csv')
 for index, row in stream.iterrows():
     instrument_token = row['instrument_token']
     tickers[instrument_token].write_tick(row)
