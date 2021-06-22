@@ -17,6 +17,9 @@ class Ticker:
         self.candle_writer = csv.writer(open(tradingsymbol+ ".csv", "w"))
         self.tick_writer = csv.writer(open(tradingsymbol + "_ticks.csv", "w"))
         self.log = open(tradingsymbol + "_log.txt", "w")
+        self.buy_orderid = ""
+        self.stoploss_orderid = ""
+        self.sell_orderid = ""
 
     def write_tick(self, tick) -> None:
         ltp = tick['last_price']
