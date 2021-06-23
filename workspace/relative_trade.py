@@ -4,6 +4,7 @@ from csv import writer
 from jugaad_trader import Zerodha
 from talib import RSI, WMA, EMA
 from _thread import start_new_thread
+from threading import Lock
 import talib
 import numpy as np
 import modin.pandas as pd
@@ -82,6 +83,8 @@ def get_timestamp():
 
 def get_ltp(instrument_token):
     return kite.ltp(instrument_token)[str(instrument_token)]['last_price']
+
+
 
 # Source for tech indicator : https://github.com/arkochhar/Technical-Indicators/blob/master/indicator/indicators.py
 
