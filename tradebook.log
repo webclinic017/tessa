@@ -3456,6 +3456,7 @@ DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo 
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 400 205
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+<<<<<<< HEAD
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+14%3A25%3A33&to=2021-06-23+14%3A25%3A33&interval=day&continuous=0&oi=0 HTTP/1.1" 403 None
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+14%3A26%3A05&to=2021-06-23+14%3A26%3A05&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4572
@@ -3463,6 +3464,19 @@ DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:4
 DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739586/3minute?instrument_token=12739586&from=2021-06-23+15%3A00%3A00&to=2021-06-23+19%3A56%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739842/3minute?instrument_token=12739842&from=2021-06-23+15%3A00%3A00&to=2021-06-23+19%3A56%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+=======
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+07%3A56%3A45&to=2021-06-23+07%3A56%3A45&interval=day&continuous=0&oi=0 HTTP/1.1" 403 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+07%3A57%3A20&to=2021-06-23+07%3A57%3A20&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739586/3minute?instrument_token=12739586&from=2021-06-22+15%3A00%3A00&to=2021-06-23+07%3A57%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739842/3minute?instrument_token=12739842&from=2021-06-22+15%3A00%3A00&to=2021-06-23+07%3A57%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+>>>>>>> 0de41a7dd8eb6f7070bc28cf1dfd65c148971ffc
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
@@ -3471,9 +3485,15 @@ DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+<<<<<<< HEAD
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+=======
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+>>>>>>> 0de41a7dd8eb6f7070bc28cf1dfd65c148971ffc
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
@@ -3485,6 +3505,7 @@ DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+<<<<<<< HEAD
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
@@ -3717,10 +3738,600 @@ DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+=======
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+08%3A04%3A24&to=2021-06-23+08%3A04%3A24&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739586/3minute?instrument_token=12739586&from=2021-06-22+15%3A00%3A00&to=2021-06-23+08%3A04%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739842/3minute?instrument_token=12739842&from=2021-06-22+15%3A00%3A00&to=2021-06-23+08%3A04%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+08%3A08%3A57&to=2021-06-23+08%3A08%3A57&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739586/3minute?instrument_token=12739586&from=2021-06-22+15%3A00%3A00&to=2021-06-23+08%3A09%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739842/3minute?instrument_token=12739842&from=2021-06-22+15%3A00%3A00&to=2021-06-23+08%3A09%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+08%3A10%3A15&to=2021-06-23+08%3A10%3A15&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739586/3minute?instrument_token=12739586&from=2021-06-22+15%3A00%3A00&to=2021-06-23+08%3A10%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739842/3minute?instrument_token=12739842&from=2021-06-22+15%3A00%3A00&to=2021-06-23+08%3A10%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+08%3A11%3A25&to=2021-06-23+08%3A11%3A25&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739586/3minute?instrument_token=12739586&from=2021-06-22+15%3A00%3A00&to=2021-06-23+08%3A11%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739842/3minute?instrument_token=12739842&from=2021-06-22+15%3A00%3A00&to=2021-06-23+08%3A11%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+08%3A38%3A45&to=2021-06-23+08%3A38%3A45&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739586/3minute?instrument_token=12739586&from=2021-06-22+15%3A00%3A00&to=2021-06-23+08%3A38%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739842/3minute?instrument_token=12739842&from=2021-06-22+15%3A00%3A00&to=2021-06-23+08%3A38%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (2): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+08%3A40%3A17&to=2021-06-23+08%3A40%3A17&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 502 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+08%3A40%3A21&to=2021-06-23+08%3A40%3A21&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739586/3minute?instrument_token=12739586&from=2021-06-22+15%3A00%3A00&to=2021-06-23+08%3A40%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739842/3minute?instrument_token=12739842&from=2021-06-22+15%3A00%3A00&to=2021-06-23+08%3A40%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (2): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Resetting dropped connection: kite.zerodha.com
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+08%3A41%3A43&to=2021-06-23+08%3A41%3A43&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+08%3A54%3A47&to=2021-06-23+08%3A54%3A47&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 502 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+08%3A54%3A56&to=2021-06-23+08%3A54%3A56&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739586/3minute?instrument_token=12739586&from=2021-06-22+15%3A00%3A00&to=2021-06-23+08%3A55%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12739842/3minute?instrument_token=12739842&from=2021-06-22+15%3A00%3A00&to=2021-06-23+08%3A55%3A00&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+>>>>>>> 0de41a7dd8eb6f7070bc28cf1dfd65c148971ffc
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+<<<<<<< HEAD
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
@@ -3729,5 +4340,22 @@ DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+=======
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739842 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None
+>>>>>>> 0de41a7dd8eb6f7070bc28cf1dfd65c148971ffc
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=12739586 HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 200 None

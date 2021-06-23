@@ -1,0 +1,50 @@
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+09%3A01%3A06&to=2021-06-22+09%3A01%3A06&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/13373442/3minute?instrument_token=13373442&from=2021-06-22+15%3A00%3A00&to=2021-06-23+09%3A01%3A10&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/11250946/3minute?instrument_token=11250946&from=2021-06-22+15%3A00%3A00&to=2021-06-23+09%3A01%3A11&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+09%3A01%3A54&to=2021-06-22+09%3A01%3A54&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/13373442/3minute?instrument_token=13373442&from=2021-06-22+15%3A00%3A00&to=2021-06-23+09%3A01%3A58&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/11250946/3minute?instrument_token=11250946&from=2021-06-22+15%3A00%3A00&to=2021-06-23+09%3A01%3A58&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+09%3A07%3A27&to=2021-06-22+09%3A07%3A27&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/13373442/3minute?instrument_token=13373442&from=2021-06-22+15%3A00%3A00&to=2021-06-23+09%3A07%3A33&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/11250946/3minute?instrument_token=11250946&from=2021-06-22+15%3A00%3A00&to=2021-06-23+09%3A07%3A33&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (2): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=11250946 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/amo HTTP/1.1" 400 146
+ERROR:kiteconnect.ticker:Connection error: 1006 - connection was closed uncleanly (None)
+ERROR:kiteconnect.ticker:Connection closed: 1006 - connection was closed uncleanly (None)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+09%3A55%3A36&to=2021-06-22+09%3A55%3A36&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/13373442/3minute?instrument_token=13373442&from=2021-06-22+15%3A00%3A00&to=2021-06-23+09%3A55%3A40&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/11250946/3minute?instrument_token=11250946&from=2021-06-22+15%3A00%3A00&to=2021-06-23+09%3A55%3A40&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=11250946 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/regular HTTP/1.1" 200 None
+ERROR:kiteconnect.ticker:Connection error: 1006 - connection was closed uncleanly (None)
+ERROR:kiteconnect.ticker:Connection closed: 1006 - connection was closed uncleanly (None)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+13%3A48%3A41&to=2021-06-22+13%3A48%3A41&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/13373442/3minute?instrument_token=13373442&from=2021-06-22+15%3A00%3A00&to=2021-06-23+13%3A48%3A46&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 1831
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/11250946/3minute?instrument_token=11250946&from=2021-06-22+15%3A00%3A00&to=2021-06-23+13%3A48%3A46&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 1457
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (2): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=13373442 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/regular HTTP/1.1" 200 None
+ERROR:kiteconnect.ticker:Connection error: 1006 - connection was closed uncleanly (None)
+ERROR:kiteconnect.ticker:Connection closed: 1006 - connection was closed uncleanly (None)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): kite.zerodha.com:443
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/260105/day?instrument_token=260105&from=2020-08-13+14%3A54%3A04&to=2021-06-22+14%3A54%3A04&interval=day&continuous=0&oi=0 HTTP/1.1" 200 4552
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.kite.trade:443
+DEBUG:urllib3.connectionpool:https://api.kite.trade:443 "GET /instruments/NFO HTTP/1.1" 200 663012
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12740098/3minute?instrument_token=12740098&from=2021-06-22+15%3A00%3A00&to=2021-06-23+14%3A54%3A11&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 2454
+DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/instruments/historical/12740354/3minute?instrument_token=12740354&from=2021-06-22+15%3A00%3A00&to=2021-06-23+14%3A54%3A11&interval=3minute&continuous=0&oi=0 HTTP/1.1" 200 2506
