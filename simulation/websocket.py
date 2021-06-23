@@ -5,6 +5,7 @@ from csv import writer
 from jugaad_trader import Zerodha
 from talib import RSI, WMA, EMA
 from _thread import start_new_thread
+from threading import Thread
 import talib
 import numpy as np
 import pandas as pd
@@ -25,7 +26,7 @@ class Ticker:
         self.tick_store = []  # store the last_traded_prices
         self.volume = 0  # store the volume of the current_candle
         self.candles = DataFrame(kite.historical_data(
-            instrument_token, previous_session_date + timedelta(hours=15), datetime.now().replace(second=0, microsecond=0), "3minute"))
+            instrument_token, previous_session_date + timedelta(hours=15), datetime.now(tzoffset(None, 19800)).replace(second=0, microsecond=0), "3minute"))
         self.tick_writer = writer(open(tradingsymbol + "_ticks.csv", "w"))
         self.open_trade = False
         self.log = open(self.tradingsymbol + "_log.txt", "w")
@@ -63,7 +64,9 @@ class Ticker:
 
         self.tick_store = []
         self.volume = 0
-        start_new_thread(on_candle, (self.instrument_token,))
+        thread = Thread(target = on_candle, args = (self.instrument_token,))
+        thread.start()
+        thread.join()
 
     def get_last_candle(self):
         return self.candles.iloc[-1]
@@ -336,7 +339,8 @@ def on_candle(instrument_token):
     last_relative_candle = relative_candles.iloc[-1]
     penultimate_relative_candle = relative_candles.iloc[-2]
 
-    if instrument_token not in open_trades:
+    # if instrument_token not in open_trades:
+    if not ticker.open_trade:
         if not penultimate_candle.STX_13:
             if not penultimate_candle.STX_8:
                 if last_candle.STX_21:
@@ -344,6 +348,7 @@ def on_candle(instrument_token):
                         if last_candle.STX_8:
 
                             try:
+                                print("try - 1")
 
                                 last_traded_price = get_ltp(
                                     instrument_token)
@@ -358,6 +363,7 @@ def on_candle(instrument_token):
                                                                 price=last_traded_price,
                                                                 )
                                 open_trades.append(instrument_token)
+                                ticker.open_trade = True
                                 print(
                                     f"Triple Supertrend Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
                                 orderbook.write(
@@ -388,7 +394,8 @@ def on_candle(instrument_token):
                             tradebook.write(
                                 f"\nTriple Supertrend buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
 
-    if instrument_token not in open_trades:
+    # if instrument_token not in open_trades:
+    if not ticker.open_trade:
         if not last_relative_candle.STX_21:
             if not last_relative_candle.STX_13:
                 if not last_relative_candle.STX_8:
@@ -396,6 +403,7 @@ def on_candle(instrument_token):
                         if last_candle.STX_8:
 
                             try:
+                                print("try - 2")
 
                                 last_traded_price = get_ltp(
                                     instrument_token)
@@ -410,6 +418,7 @@ def on_candle(instrument_token):
                                                                 price=last_traded_price,
                                                                 )
                                 open_trades.append(instrument_token)
+                                ticker.open_trade = True
                                 print(
                                     f"Relative Supertrend Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
                                 orderbook.write(
@@ -428,7 +437,8 @@ def on_candle(instrument_token):
                             tradebook.write(
                                 f"\nRelative Supertrend buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
 
-    if instrument_token not in open_trades:
+    # if instrument_token not in open_trades:
+    if not ticker.open_trade:
 
         if not last_relative_candle.STX_13:
             if not last_relative_candle.STX_8:
@@ -436,6 +446,7 @@ def on_candle(instrument_token):
                     if last_candle.STX_8:
 
                         try:
+                            print("try - 3")
 
                             last_traded_price = get_ltp(
                                 instrument_token)
@@ -450,6 +461,7 @@ def on_candle(instrument_token):
                                                             price=last_traded_price,
                                                             )
                             open_trades.append(instrument_token)
+                            ticker.open_trade = True
                             print(
                                 f"Relative Supertrend Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
                             orderbook.write(
@@ -468,13 +480,15 @@ def on_candle(instrument_token):
                         tradebook.write(
                             f"\nRelative Supertrend buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
 
-    if instrument_token not in open_trades:
+    # if instrument_token not in open_trades:
+    if not ticker.open_trade:
         if penultimate_candle.rsi21 < 21:
             if last_candle.rsi21 >= 21:
                 if penultimate_candle.rsi13 < 13:
                     if last_candle.rsi13 >= 13:
 
                         try:
+                            print("try - 4")
 
                             last_traded_price = get_ltp(instrument_token)
                             timestamp = get_timestamp()
@@ -488,6 +502,7 @@ def on_candle(instrument_token):
                                                             price=last_traded_price,
                                                             )
                             open_trades.append(instrument_token)
+                            ticker.open_trade = True
                             print(
                                 f"Triple RSI Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
                             orderbook.write(
@@ -505,10 +520,12 @@ def on_candle(instrument_token):
                         tradebook.write(
                             f"\nTriple RSI buy signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
 
-    elif instrument_token in open_trades:
+    # elif instrument_token in open_trades:
+    elif ticker.open_trade:
         if not last_candle.STX_13:
 
             try:
+                print("try - 5")
 
                 last_traded_price = get_ltp(instrument_token)
                 timestamp = get_timestamp()
@@ -522,6 +539,7 @@ def on_candle(instrument_token):
                                                     price=last_traded_price,
                                                     )
                 open_trades.remove(instrument_token)
+                ticker.open_trade = False
                 print(
                     f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                 orderbook.write(
@@ -539,11 +557,13 @@ def on_candle(instrument_token):
             tradebook.write(
                 f"\nTriple Supertrend 13 sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price} ")
 
-    elif instrument_token in open_trades:
+    # elif instrument_token in open_trades:
+    elif ticker.open_trade:
         if last_relative_candle.STX_13:
             if last_relative_candle.STX_8:
 
                 try:
+                    print("try - 6")
 
                     last_traded_price = get_ltp(instrument_token)
                     timestamp = get_timestamp()
@@ -557,6 +577,7 @@ def on_candle(instrument_token):
                                                         price=last_traded_price,
                                                         )
                     open_trades.remove(instrument_token)
+                    ticker.open_trade = False
                     print(
                         f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                     orderbook.write(
@@ -573,11 +594,13 @@ def on_candle(instrument_token):
                 tradebook.write(
                     f"\nRelative Double Supertrend Sell signal for {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
 
-    elif instrument_token in open_trades:
+    # elif instrument_token in open_trades:
+    elif ticker.open_trade:
         if penultimate_candle.rsi13 > 87:
             if last_candle.rsi13 <= 87:
 
                 try:
+                    print("try - 7")
 
                     last_traded_price = get_ltp(instrument_token)
                     timestamp = get_timestamp()
@@ -591,6 +614,7 @@ def on_candle(instrument_token):
                                                         price=last_traded_price,
                                                         )
                     open_trades.remove(instrument_token)
+                    ticker.open_trade = False
                     print(
                         f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                     orderbook.write(
@@ -607,11 +631,13 @@ def on_candle(instrument_token):
                 tradebook.write(
                     f"\nTriple RSI sell signal, {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
 
-    elif instrument_token in open_trades:
+    # elif instrument_token in open_trades:
+    elif ticker.open_trade:
         if last_relative_candle.rsi21 < 21:
             if last_relative_candle.rsi21 >= 21:
 
                 try:
+                    print("try - 8")
 
                     last_traded_price = get_ltp(instrument_token)
                     timestamp = get_timestamp()
@@ -625,6 +651,7 @@ def on_candle(instrument_token):
                                                         price=last_traded_price,
                                                         )
                     open_trades.remove(instrument_token)
+                    ticker.open_trade = False
                     print(
                         f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                     orderbook.write(

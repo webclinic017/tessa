@@ -1,37 +1,10 @@
-import pandas as pd
-from jugaad_trader import Zerodha
-from datetime import datetime, timedelta
-
-from pandas import DataFrame
-from csv import writer
-from jugaad_trader import Zerodha
-from talib import RSI, WMA, EMA
-from _thread import start_new_thread
-import talib
-import numpy as np
-import pandas as pd
-import pytz
-from datetime import datetime, timedelta
-from dateutil.tz import tzoffset
-import csv
-
-import logging
-
-
 from datetime import datetime
 from dateutil.tz import tzoffset
 
 
-def get_timestamp():
-    return datetime.now(tzoffset(None, 19800)).isoformat(' ', 'seconds')
 
-
-def get_ltp(instrument_token):
-    return kite.ltp(instrument_token)[str(instrument_token)]['last_price']
 
 # Source for tech indicator : https://github.com/arkochhar/Technical-Indicators/blob/master/indicator/indicators.py
-
-
 def ExponentialMovingAverage(df, base, target, period, alpha=False):
     """
     Function to compute Exponential Moving Average (EMA)
@@ -171,85 +144,3 @@ def SUPERTREND(df, period=supertrend_period, multiplier=supertrend_multiplier, o
 
     df.fillna(0, inplace=True)
     return df
-
-
-# kite = Zerodha()
-
-
-# # Set access token loads the stored session.
-# # Name chosen to keep it compatible with kiteconnect.
-# kite.set_access_token()
-
-# today = datetime.today()
-
-
-# banknifty_instrument_token = 260105
-
-# previous_session_ohlc = kite.historical_data(
-#     banknifty_instrument_token, today - timedelta(days=21), today, "day")[-1]
-
-# previous_session_date = previous_session_ohlc['date']
-
-
-# banknifty_high = round(previous_session_ohlc['high'])
-# banknifty_high = banknifty_high - (banknifty_high % 100)
-# banknifty_low = round(previous_session_ohlc['low'])
-# banknifty_low = banknifty_low - (banknifty_low % 100)
-
-# nfo_instruments = pd.DataFrame(kite.instruments("NFO"))
-
-# banknifty_instruments = nfo_instruments.loc[(
-#     nfo_instruments.name == 'BANKNIFTY')]
-
-# call_option = banknifty_instruments.loc[(banknifty_instruments.strike == banknifty_low) & (banknifty_instruments.instrument_type == 'CE')]
-# print(call_option)
-
-
-
-
-historical = kite.historical_data(
-    banknifty_instrument_token, today - timedelta(days=314), today, "day")
-historical_data = DataFrame(historical)
-
-print(historical_data.tail())
-
-historical_data["ema210"] = EMA(historical_data.close, timeperiod=210)
-historical_data["ema21"] = EMA(historical_data.close, timeperiod=21)
-
-previous_session_ohlc = historical[-2]
-
-
-
-previous_day_candle = historical_data.iloc[-2]
-
-previous_session_date = previous_session_ohlc['date'].date()
-banknifty_close = int(round(previous_day_candle['close'], -2))
-
-if banknifty_close >= previous_day_candle.ema210:
-    print("Long Term Trend: Positive")
-else:
-    print("Long Term Trend: Negative")
-
-if banknifty_close >= previous_day_candle.ema21:
-    print("Short Term Trend: Positive")
-else:
-    print("Short Term Trend: Negative")
-
-banknifty_high = int(round(previous_session_ohlc['high'], -2))
-banknifty_low = int(round(previous_session_ohlc['low'], -2))
-
-nfo_instruments = pd.DataFrame(kite.instruments("NFO"))
-
-banknifty_instruments = nfo_instruments.loc[(
-    nfo_instruments.name == 'BANKNIFTY')]
-
-tickertape = {}
-strikes = []
-
-monthly_options = banknifty_instruments.loc[banknifty_instruments.strike == banknifty_close, [
-    'instrument_token', 'tradingsymbol']].head(2)
-call_instrument_token, call_tradingsymbol = monthly_options.values[0]
-put_instrument_token, put_tradingsymbol = monthly_options.values[1]
-tickertape[call_instrument_token] = call_tradingsymbol
-tickertape[put_instrument_token] = put_tradingsymbol
-watchlist = (call_instrument_token, put_instrument_token)
