@@ -1,31 +1,7 @@
 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:27+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:27+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:28+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:28+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:29+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:29+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:38+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:38+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:38+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:38+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:39+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:39+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:40+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:40+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:40+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:40+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:41+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:41+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:42+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:42+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:42+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:43+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:43+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:53:44+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:54:08+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:54:09+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:54:09+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:54:10+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:54:10+05:30 ltp: 163.7 
-Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 07:54:10+05:30 ltp: 163.7 
+Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 08:55:07+05:30 buy price: 693.75
+Triple Supertrend 13 sell signal, BANKNIFTY21JUN34600PE at 2021-06-23 08:55:10+05:30 sell price: 620.7
+Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 08:55:15+05:30 buy price: 630.8
+Triple Supertrend 13 sell signal, BANKNIFTY21JUN34600PE at 2021-06-23 08:55:19+05:30 sell price: 596.7
+Relative Supertrend buy signal, BANKNIFTY21JUN34600PE at 2021-06-23 08:55:40+05:30 buy price: 453.15
+Triple Supertrend 13 sell signal, BANKNIFTY21JUN34600PE at 2021-06-23 08:55:42+05:30 sell price: 356.75

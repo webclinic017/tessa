@@ -13,3 +13,7 @@ Reward 2100
 # RSI 21
 # Supertrend in volume
 9:21
+
+
+# Buy above all time high
+ - screener : uppercircuit > all time high

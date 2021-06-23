@@ -3,7 +3,7 @@ from pandas import DataFrame
 from csv import writer
 from jugaad_trader import Zerodha
 from talib import RSI, WMA, EMA
-from _thread import start_new_thread
+from threading import Thread
 import talib
 import numpy as np
 import pandas as pd
@@ -58,10 +58,13 @@ class Ticker:
 
         candle_dataframe_length = len(self.candles.index)
         self.candles.loc[candle_dataframe_length] = candle_data
+
         self.tick_store = []
         self.volume = 0
 
-        start_new_thread(on_candle, (self.instrument_token,))
+        thread = Thread(target=on_candle, args=(self.instrument_token,))
+        thread.start()
+        thread.join()
 
     def get_last_candle(self):
         return self.candles.iloc[-1]
@@ -269,28 +272,29 @@ banknifty_instruments = nfo_instruments.loc[(
 tickertape = {}
 strikes = []
 
-# monthly_options = banknifty_instruments.loc[banknifty_instruments.strike == banknifty_close, [
-#     'instrument_token', 'tradingsymbol']].head(2)
-
-high_put_option = banknifty_instruments.loc[banknifty_instruments.strike == banknifty_high, [
-    'instrument_token', 'tradingsymbol']].head(6)
-
-low_call_option = banknifty_instruments.loc[banknifty_instruments.strike == banknifty_low, [
-    'instrument_token', 'tradingsymbol']].head(5)
-
-
-# high_put_instrument_token, high_put_tradingsymbol = high_put_option.values[1]
-# low_call_instrument_token, low_call_tradingsymbol = low_call_option.values[0]
-# tickertape[high_put_instrument_token] = high_put_tradingsymbol
-# tickertape[low_call_instrument_token] = low_call_tradingsymbol
-
-call_instrument_token, call_tradingsymbol = low_call_option.values[4]
-put_instrument_token, put_tradingsymbol = high_put_option.values[5]
-
+monthly_options = banknifty_instruments.loc[banknifty_instruments.strike == banknifty_close, [
+    'instrument_token', 'tradingsymbol']].head(2)
+call_instrument_token, call_tradingsymbol = monthly_options.values[0]
+put_instrument_token, put_tradingsymbol = monthly_options.values[1]
 tickertape[call_instrument_token] = call_tradingsymbol
 tickertape[put_instrument_token] = put_tradingsymbol
-
 watchlist = (call_instrument_token, put_instrument_token)
+
+# high_put_option = banknifty_instruments.loc[banknifty_instruments.strike == banknifty_high, [
+#     'instrument_token', 'tradingsymbol']].head(6)
+
+# low_call_option = banknifty_instruments.loc[banknifty_instruments.strike == banknifty_low, [
+#     'instrument_token', 'tradingsymbol']].head(5)
+
+
+
+# call_instrument_token, call_tradingsymbol = low_call_option.values[4]
+# put_instrument_token, put_tradingsymbol = high_put_option.values[5]
+
+# tickertape[call_instrument_token] = call_tradingsymbol
+# tickertape[put_instrument_token] = put_tradingsymbol
+
+# watchlist = (call_instrument_token, put_instrument_token)
 
 tickers = {}
 
@@ -419,7 +423,7 @@ def on_candle(instrument_token):
 
                                     timestamp = get_timestamp()
                                     buy_price = (last_candle.high +
-                                                last_candle.close) / 2
+                                                 last_candle.close) / 2
 
                                     try:
                                         print("try - 2")
@@ -468,7 +472,8 @@ def on_candle(instrument_token):
                             if last_candle.STX_8:
 
                                 timestamp = get_timestamp()
-                                buy_price = (last_candle.high + last_candle.close) / 2
+                                buy_price = (last_candle.high +
+                                             last_candle.close) / 2
 
                                 try:
                                     print("try - 3")
@@ -567,14 +572,14 @@ def on_candle(instrument_token):
                         last_traded_price = get_ltp(instrument_token)
 
                         sell_order_id = kite.place_order(tradingsymbol=tickertape[instrument_token],
-                                                        exchange=kite.EXCHANGE_NFO,
-                                                        transaction_type=kite.TRANSACTION_TYPE_SELL,
-                                                        quantity=25,
-                                                        order_type=kite.ORDER_TYPE_LIMIT,
-                                                        product=kite.PRODUCT_NRML,
-                                                        variety=kite.VARIETY_REGULAR,
-                                                        price=last_traded_price,
-                                                        )
+                                                         exchange=kite.EXCHANGE_NFO,
+                                                         transaction_type=kite.TRANSACTION_TYPE_SELL,
+                                                         quantity=25,
+                                                         order_type=kite.ORDER_TYPE_LIMIT,
+                                                         product=kite.PRODUCT_NRML,
+                                                         variety=kite.VARIETY_REGULAR,
+                                                         price=last_traded_price,
+                                                         )
 
                         open_trades.remove(instrument_token)
                         ticker.open_trade = False
@@ -722,6 +727,7 @@ def on_candle(instrument_token):
                     f"\nTriple Relative RSI sell signal, {tradingsymbol} at {timestamp} sell price: {sell_price}")
                 tradebook.write(
                     f"\nTriple Relative RSI sell signal, {tradingsymbol} at {timestamp} sell price: {sell_price}")
+
 
 
 def on_ticks(ws, ticks):
