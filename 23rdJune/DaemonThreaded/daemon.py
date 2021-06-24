@@ -4,6 +4,7 @@ from csv import writer
 from jugaad_trader import Zerodha
 from talib import RSI, WMA, EMA
 from _thread import start_new_thread
+from threading import Thread, Lock
 import talib
 import numpy as np
 import pandas as pd
@@ -79,6 +80,55 @@ def get_timestamp():
 
 def get_ltp(instrument_token):
     return kite.ltp(instrument_token)[str(instrument_token)]['last_price']
+
+
+data_lock = Lock()
+
+def buy_instrument(instrument_token, tradingsymbol, buy_price, open_trades, data_lock):
+    if instrument_token not in open_trades:
+        try:
+            buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
+                            exchange=kite.EXCHANGE_NFO,
+                            transaction_type=kite.TRANSACTION_TYPE_BUY,
+                            quantity=25,
+                            order_type=kite.ORDER_TYPE_LIMIT,
+                            product=kite.PRODUCT_NRML,
+                            variety=kite.VARIETY_AMO,
+                            price=buy_price,
+                            )
+            with data_lock:
+                open_trades.append(instrument_token)
+            return buy_order_id
+        except:
+            return 0
+
+    else:
+        print(f"{tradingsymbol} is already an open position")
+        return 0
+
+def sell_instrument(instrument_token, tradingsymbol, sell_price, open_trades, data_lock):
+    if instrument_token in open_trades:
+        try:
+            sell_order_id = kite.place_order(tradingsymbol=tradingsymbol,
+                            exchange=kite.EXCHANGE_NFO,
+                            transaction_type=kite.TRANSACTION_TYPE_SELL,
+                            quantity=25,
+                            order_type=kite.ORDER_TYPE_LIMIT,
+                            product=kite.PRODUCT_NRML,
+                            variety=kite.VARIETY_AMO,
+                            price=sell_price,
+                            )
+            with data_lock:
+                open_trades.remove(instrument_token)
+
+            return sell_order_id
+        except:
+            return 0
+    else:
+        print(f"{tradingsymbol} is not an open position")
+        return 0
+
+
 
 # Source for tech indicator : https://github.com/arkochhar/Technical-Indicators/blob/master/indicator/indicators.py
 
@@ -315,6 +365,7 @@ open_trades = []
 
 
 print(f"Tickertape: {tickertape}")
+
 kws = kite.ticker()
 
 
@@ -364,17 +415,7 @@ def on_candle(instrument_token):
                                 last_traded_price = get_ltp(
                                     instrument_token)
 
-                                buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
-                                                                exchange=kite.EXCHANGE_NFO,
-                                                                transaction_type=kite.TRANSACTION_TYPE_BUY,
-                                                                quantity=25,
-                                                                order_type=kite.ORDER_TYPE_LIMIT,
-                                                                product=kite.PRODUCT_NRML,
-                                                                variety=kite.VARIETY_REGULAR,
-                                                                price=buy_price,
-                                                                )
-
-                                open_trades.append(instrument_token)
+                                buy_order_id = buy_instrument(instrument_token, tradingsymbol, buy_price, data_lock)
                                 ticker.open_trade = True
 
                                 print(
@@ -427,17 +468,9 @@ def on_candle(instrument_token):
                                         last_traded_price = get_ltp(
                                             instrument_token)
 
-                                        buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
-                                                                        exchange=kite.EXCHANGE_NFO,
-                                                                        transaction_type=kite.TRANSACTION_TYPE_BUY,
-                                                                        quantity=25,
-                                                                        order_type=kite.ORDER_TYPE_LIMIT,
-                                                                        product=kite.PRODUCT_NRML,
-                                                                        variety=kite.VARIETY_REGULAR,
-                                                                        price=last_traded_price,
-                                                                        )
+                                        buy_order_id = buy_instrument(instrument_token, tradingsymbol, buy_price, data_lock)
 
-                                        open_trades.append(instrument_token)
+            
                                         ticker.open_trade = True
 
                                         print(
@@ -476,17 +509,7 @@ def on_candle(instrument_token):
                                     last_traded_price = get_ltp(
                                         instrument_token)
 
-                                    buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
-                                                                    exchange=kite.EXCHANGE_NFO,
-                                                                    transaction_type=kite.TRANSACTION_TYPE_BUY,
-                                                                    quantity=25,
-                                                                    order_type=kite.ORDER_TYPE_LIMIT,
-                                                                    product=kite.PRODUCT_NRML,
-                                                                    variety=kite.VARIETY_REGULAR,
-                                                                    price=last_traded_price,
-                                                                    )
-
-                                    open_trades.append(instrument_token)
+                                    buy_order_id = buy_instrument(instrument_token, tradingsymbol, buy_price, data_lock)
                                     ticker.open_trade = True
 
                                     print(
@@ -522,17 +545,7 @@ def on_candle(instrument_token):
 
                             last_traded_price = get_ltp(instrument_token)
                             timestamp = get_timestamp()
-                            buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
-                                                            exchange=kite.EXCHANGE_NFO,
-                                                            transaction_type=kite.TRANSACTION_TYPE_BUY,
-                                                            quantity=25,
-                                                            order_type=kite.ORDER_TYPE_LIMIT,
-                                                            product=kite.PRODUCT_NRML,
-                                                            variety=kite.VARIETY_REGULAR,
-                                                            price=last_traded_price,
-                                                            )
-
-                            open_trades.append(instrument_token)
+                            buy_order_id = buy_instrument(instrument_token, tradingsymbol, buy_price, data_lock)
                             ticker.open_trade = True
 
                             print(
@@ -566,17 +579,8 @@ def on_candle(instrument_token):
 
                         last_traded_price = get_ltp(instrument_token)
 
-                        sell_order_id = kite.place_order(tradingsymbol=tickertape[instrument_token],
-                                                        exchange=kite.EXCHANGE_NFO,
-                                                        transaction_type=kite.TRANSACTION_TYPE_SELL,
-                                                        quantity=25,
-                                                        order_type=kite.ORDER_TYPE_LIMIT,
-                                                        product=kite.PRODUCT_NRML,
-                                                        variety=kite.VARIETY_REGULAR,
-                                                        price=last_traded_price,
-                                                        )
+                        sell_order_id = sell_instrument(instrument_token, tradingsymbol, sell_price, data_lock)
 
-                        open_trades.remove(instrument_token)
                         ticker.open_trade = False
 
                         print(
@@ -610,17 +614,7 @@ def on_candle(instrument_token):
 
                     last_traded_price = get_ltp(instrument_token)
 
-                    sell_order_id = kite.place_order(tradingsymbol=tickertape[instrument_token],
-                                                     exchange=kite.EXCHANGE_NFO,
-                                                     transaction_type=kite.TRANSACTION_TYPE_SELL,
-                                                     quantity=25,
-                                                     order_type=kite.ORDER_TYPE_LIMIT,
-                                                     product=kite.PRODUCT_NRML,
-                                                     variety=kite.VARIETY_REGULAR,
-                                                     price=last_traded_price,
-                                                     )
-
-                    open_trades.remove(instrument_token)
+                    sell_order_id = sell_instrument(instrument_token, tradingsymbol, sell_price, data_lock)
                     ticker.open_trade = False
 
                     print(
@@ -652,17 +646,7 @@ def on_candle(instrument_token):
 
                     last_traded_price = get_ltp(instrument_token)
 
-                    sell_order_id = kite.place_order(tradingsymbol=tickertape[instrument_token],
-                                                     exchange=kite.EXCHANGE_NFO,
-                                                     transaction_type=kite.TRANSACTION_TYPE_SELL,
-                                                     quantity=25,
-                                                     order_type=kite.ORDER_TYPE_LIMIT,
-                                                     product=kite.PRODUCT_NRML,
-                                                     variety=kite.VARIETY_REGULAR,
-                                                     price=last_traded_price,
-                                                     )
-
-                    open_trades.remove(instrument_token)
+                    sell_order_id = sell_instrument(instrument_token, tradingsymbol, sell_price, data_lock)
                     ticker.open_trade = False
 
                     print(
@@ -694,17 +678,7 @@ def on_candle(instrument_token):
 
                     last_traded_price = get_ltp(instrument_token)
 
-                    sell_order_id = kite.place_order(tradingsymbol=tickertape[instrument_token],
-                                                     exchange=kite.EXCHANGE_NFO,
-                                                     transaction_type=kite.TRANSACTION_TYPE_SELL,
-                                                     quantity=25,
-                                                     order_type=kite.ORDER_TYPE_LIMIT,
-                                                     product=kite.PRODUCT_NRML,
-                                                     variety=kite.VARIETY_REGULAR,
-                                                     price=last_traded_price,
-                                                     )
-
-                    open_trades.remove(instrument_token)
+                    sell_order_id = sell_instrument(instrument_token, tradingsymbol, sell_price, data_lock)
                     ticker.open_trade = False
 
                     print(
