@@ -1,0 +1,24 @@
+
+Relative Supertrend buy signal, BANKNIFTY2170135300PE at 2021-06-23 09:58:35+05:30 buy price: 745.5
+Triple Supertrend 13 sell signal, BANKNIFTY2170135300PE at 2021-06-23 10:47:26+05:30 sell price: 750.0
+Triple Supertrend 13 sell signal, BANKNIFTY2170135300PE at 2021-06-23 10:49:29+05:30 sell price: 750.0
+Relative Supertrend buy signal, BANKNIFTY2170135300PE at 2021-06-23 11:48:43+05:30 buy price: 728.75
+Triple Supertrend 13 sell signal, BANKNIFTY2170135300PE at 2021-06-23 12:04:32+05:30 sell price: 710.3
+Triple Supertrend 13 sell signal, BANKNIFTY2170135300PE at 2021-06-23 12:06:31+05:30 sell price: 710.3
+Relative Supertrend buy signal, BANKNIFTY2170135300PE at 2021-06-23 12:45:44+05:30 buy price: 747.2
+Triple Supertrend 13 sell signal, BANKNIFTY2170135300PE at 2021-06-23 12:51:17+05:30 sell price: 708.0
+Relative Supertrend buy signal, BANKNIFTY2170135300PE at 2021-06-23 13:11:02+05:30 buy price: 749.45
+Relative Supertrend buy signal, BANKNIFTY2170135300PE at 2021-06-23 13:13:10+05:30 buy price: 753.4
+Triple Supertrend 13 sell signal, BANKNIFTY2170135300PE at 2021-06-23 13:21:08+05:30 sell price: 744.25
+Triple Supertrend 13 sell signal, BANKNIFTY2170135300PE at 2021-06-23 13:23:07+05:30 sell price: 755.2
+Triple Supertrend buy signal, BANKNIFTY2170135300PE at 2021-06-23 13:43:21+05:30 buy price: 743.0
+Relative Supertrend buy signal, BANKNIFTY2170135300PE at 2021-06-23 13:45:11+05:30 buy price: 740.15
+Relative Supertrend buy signal, BANKNIFTY2170135300PE at 2021-06-23 13:47:16+05:30 buy price: 737.3
+Triple Supertrend 13 sell signal, BANKNIFTY2170135300PE at 2021-06-23 13:49:13+05:30 sell price: 692.3
+Relative Supertrend buy signal, BANKNIFTY2170135300PE at 2021-06-23 14:14:12+05:30 buy price: 694.85
+Triple Supertrend 13 sell signal, BANKNIFTY2170135300PE at 2021-06-23 15:04:12+05:30 sell price: 809.6
+Triple Supertrend 13 sell signal, BANKNIFTY2170135300PE at 2021-06-23 15:06:07+05:30 sell price: 809.6
+Relative Supertrend buy signal, BANKNIFTY2170135300PE at 2021-06-23 15:11:59+05:30 buy price: 855.5
+Relative Supertrend buy signal, BANKNIFTY2170135300PE at 2021-06-23 15:12:06+05:30 buy price: 855.5
+Triple Supertrend 13 sell signal, BANKNIFTY2170135300PE at 2021-06-23 15:19:46+05:30 sell price: 809.8
+Triple Supertrend 13 sell signal, BANKNIFTY2170135300PE at 2021-06-23 15:21:50+05:30 sell price: 818.7

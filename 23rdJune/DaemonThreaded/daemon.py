@@ -371,7 +371,7 @@ def on_candle(instrument_token):
                                                                 order_type=kite.ORDER_TYPE_LIMIT,
                                                                 product=kite.PRODUCT_NRML,
                                                                 variety=kite.VARIETY_REGULAR,
-                                                                price=buy_price,
+                                                                price=last_traded_price,
                                                                 )
 
                                 open_trades.append(instrument_token)

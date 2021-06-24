@@ -65,11 +65,7 @@ class Ticker:
 
         self.tick_store = []
         self.volume = 0
-<<<<<<< HEAD
         thread = Thread(target = on_candle, args = (self.instrument_token,), daemon=True)
-=======
-        thread = Thread(target=on_candle, args=(self.instrument_token,))
->>>>>>> 0de41a7dd8eb6f7070bc28cf1dfd65c148971ffc
         thread.start()
         
 
@@ -409,24 +405,10 @@ def on_candle(instrument_token):
 
                                 last_traded_price = get_ltp(
                                     instrument_token)
-<<<<<<< HEAD
                                 timestamp = get_timestamp()
                                 buy_order_id = buy_instrument(instrument_token, open_trades, tradingsymbol, last_traded_price, data_lock)
             
                         
-=======
-
-                                buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
-                                                                exchange=kite.EXCHANGE_NFO,
-                                                                transaction_type=kite.TRANSACTION_TYPE_BUY,
-                                                                quantity=25,
-                                                                order_type=kite.ORDER_TYPE_LIMIT,
-                                                                product=kite.PRODUCT_NRML,
-                                                                variety=kite.VARIETY_AMO,
-                                                                price=buy_price,
-                                                                )
-                                open_trades.append(instrument_token)
->>>>>>> 0de41a7dd8eb6f7070bc28cf1dfd65c148971ffc
                                 ticker.open_trade = True
                                 print(
                                     f"Triple Supertrend Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
@@ -475,23 +457,9 @@ def on_candle(instrument_token):
 
                                 last_traded_price = get_ltp(
                                     instrument_token)
-<<<<<<< HEAD
                                 timestamp = get_timestamp()
                                 buy_order_id = buy_instrument(instrument_token, open_trades, tradingsymbol, last_traded_price, data_lock)
                                
-=======
-
-                                buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
-                                                                exchange=kite.EXCHANGE_NFO,
-                                                                transaction_type=kite.TRANSACTION_TYPE_BUY,
-                                                                quantity=25,
-                                                                order_type=kite.ORDER_TYPE_LIMIT,
-                                                                product=kite.PRODUCT_NRML,
-                                                                variety=kite.VARIETY_AMO,
-                                                                price=last_traded_price,
-                                                                )
-                                open_trades.append(instrument_token)
->>>>>>> 0de41a7dd8eb6f7070bc28cf1dfd65c148971ffc
                                 ticker.open_trade = True
                                 print(
                                     f"Relative Supertrend Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")

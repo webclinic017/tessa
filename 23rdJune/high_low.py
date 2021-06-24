@@ -4,6 +4,7 @@ from csv import writer
 from jugaad_trader import Zerodha
 from talib import RSI, WMA, EMA
 from threading import Thread
+from multiprocessing import Process
 import talib
 import numpy as np
 import pandas as pd
@@ -84,7 +85,6 @@ def get_ltp(instrument_token):
     return kite.ltp(instrument_token)[str(instrument_token)]['last_price']
 
 # Source for tech indicator : https://github.com/arkochhar/Technical-Indicators/blob/master/indicator/indicators.py
-
 
 def ExponentialMovingAverage(df, base, target, period, alpha=False):
     """

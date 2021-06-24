@@ -90,3 +90,5 @@ DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/regu
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (14): kite.zerodha.com:443
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "GET /oms/quote/ltp?i=11250946 HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://kite.zerodha.com:443 "POST /oms/orders/regular HTTP/1.1" 200 None
+ERROR:kiteconnect.ticker:Connection error: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
+ERROR:kiteconnect.ticker:Connection closed: 1006 - connection was closed uncleanly (peer dropped the TCP connection without previous WebSocket closing handshake)
