@@ -428,9 +428,7 @@ def on_candle(instrument_token):
                                     instrument_token)
                                 timestamp = get_timestamp()
                                 buy_order_id = buy_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
-            
-                        
-                                ticker.open_trade = True
+        
                                 print(
                                     f"Triple Supertrend Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
                                 orderbook.write(

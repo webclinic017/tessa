@@ -6,8 +6,8 @@ from csv import writer
 from jugaad_trader import Zerodha
 from talib import RSI, WMA, EMA
 from _thread import start_new_thread
-from threading import Thread
-from multiprocessing import Process, Array, Lock
+from threading import Thread, Lock
+from multiprocessing import Process
 import talib
 import numpy as np
 import pandas as pd
@@ -28,7 +28,7 @@ class Ticker:
         self.tick_store = []  # store the last_traded_prices
         self.volume = 0  # store the volume of the current_candle
         self.candles = DataFrame(kite.historical_data(
-            instrument_token, previous_session_date + timedelta(hours=15), datetime.now(tzoffset(None, 19800)).replace(second=0, microsecond=0), "3minute"))
+            instrument_token, previous_session_date + timedelta(hours=15), datetime.now(tzoffset(None, 19800)), "3minute"))
         self.tick_writer = writer(open(tradingsymbol + "_ticks.csv", "w"))
         self.open_trade = False
         self.log = open(self.tradingsymbol + "_log.txt", "w")
@@ -68,8 +68,8 @@ class Ticker:
         # thread = Thread(target = on_candle, args = (self.instrument_token,), daemon=True)
         # thread.start()
 
-        process = Process(target = on_candle, args = (self.instrument_token,), daemon=True)
-        process.start()
+        thread = Thread(target = on_candle, args = (self.instrument_token,), daemon=True)
+        thread.start()
         
 
     def get_last_candle(self):
@@ -91,56 +91,56 @@ def get_ltp(instrument_token):
 
 data_lock = Lock()
 
+
 def buy_instrument(instrument_token, open_positions, tradingsymbol, ticker, buy_price, data_lock):
     if instrument_token not in open_positions:
-        data_lock.acquire()
         try:
-            buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
-                            exchange=kite.EXCHANGE_NFO,
-                            transaction_type=kite.TRANSACTION_TYPE_BUY,
-                            quantity=25,
-                            order_type=kite.ORDER_TYPE_LIMIT,
-                            product=kite.PRODUCT_NRML,
-                            variety=kite.VARIETY_AMO,
-                            price=buy_price,
-                            )
-            
-            open_positions.append(instrument_token)
-            ticker.open_trade = True
-            return buy_order_id
+            with data_lock:
+                buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
+                                                exchange=kite.EXCHANGE_NFO,
+                                                transaction_type=kite.TRANSACTION_TYPE_BUY,
+                                                quantity=25,
+                                                order_type=kite.ORDER_TYPE_LIMIT,
+                                                product=kite.PRODUCT_NRML,
+                                                variety=kite.VARIETY_AMO,
+                                                price=buy_price,
+                                                )
+
+                open_positions.append(instrument_token)
+                ticker.open_trade = True
+                return buy_order_id
         except Exception as e:
             print(e)
             return 0
-        finally:
-            data_lock.release()
+
 
     else:
         print(f"{tradingsymbol} is already an open position")
         return 0
 
+
 def sell_instrument(instrument_token, open_positions, tradingsymbol, ticker, sell_price, data_lock):
     if instrument_token in open_positions:
         try:
-            data_lock.acquire()
-            sell_order_id = kite.place_order(tradingsymbol=tradingsymbol,
-                            exchange=kite.EXCHANGE_NFO,
-                            transaction_type=kite.TRANSACTION_TYPE_SELL,
-                            quantity=25,
-                            order_type=kite.ORDER_TYPE_LIMIT,
-                            product=kite.PRODUCT_NRML,
-                            variety=kite.VARIETY_AMO,
-                            price=sell_price,
-                            )
-           
-            open_positions.remove(instrument_token)
-            ticker.open_trade = False
+            with data_lock:
+                sell_order_id = kite.place_order(tradingsymbol=tradingsymbol,
+                                                exchange=kite.EXCHANGE_NFO,
+                                                transaction_type=kite.TRANSACTION_TYPE_SELL,
+                                                quantity=25,
+                                                order_type=kite.ORDER_TYPE_LIMIT,
+                                                product=kite.PRODUCT_NRML,
+                                                variety=kite.VARIETY_AMO,
+                                                price=sell_price,
+                                                )
 
-            return sell_order_id
+                open_positions.remove(instrument_token)
+                ticker.open_trade = False
+
+                return sell_order_id
         except Exception as e:
             print(e)
             return 0
-        finally:
-            data_lock.release()
+ 
     else:
         print(f"{tradingsymbol} is not an open position")
         return 0
