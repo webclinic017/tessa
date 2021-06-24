@@ -3,7 +3,6 @@ from pandas import DataFrame
 from csv import writer
 from jugaad_trader import Zerodha
 from talib import RSI, WMA, EMA
-from _thread import start_new_thread
 from threading import Thread, Lock
 import talib
 import numpy as np
@@ -59,10 +58,13 @@ class Ticker:
 
         candle_dataframe_length = len(self.candles.index)
         self.candles.loc[candle_dataframe_length] = candle_data
+
         self.tick_store = []
         self.volume = 0
 
-        start_new_thread(on_candle, (self.instrument_token,))
+        thread = Thread(target=on_candle, args=(self.instrument_token,), daemon=True)
+        thread.start()
+
 
     def get_last_candle(self):
         return self.candles.iloc[-1]
@@ -84,50 +86,59 @@ def get_ltp(instrument_token):
 
 data_lock = Lock()
 
-def buy_instrument(instrument_token, tradingsymbol, buy_price, open_trades, data_lock):
-    if instrument_token not in open_trades:
+
+def buy_instrument(instrument_token, open_positions, tradingsymbol, ticker, buy_price, data_lock):
+    if instrument_token not in open_positions:
         try:
-            buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
-                            exchange=kite.EXCHANGE_NFO,
-                            transaction_type=kite.TRANSACTION_TYPE_BUY,
-                            quantity=25,
-                            order_type=kite.ORDER_TYPE_LIMIT,
-                            product=kite.PRODUCT_NRML,
-                            variety=kite.VARIETY_AMO,
-                            price=buy_price,
-                            )
             with data_lock:
-                open_trades.append(instrument_token)
-            return buy_order_id
-        except:
+                buy_order_id = kite.place_order(tradingsymbol=tradingsymbol,
+                                                exchange=kite.EXCHANGE_NFO,
+                                                transaction_type=kite.TRANSACTION_TYPE_BUY,
+                                                quantity=25,
+                                                order_type=kite.ORDER_TYPE_LIMIT,
+                                                product=kite.PRODUCT_NRML,
+                                                variety=kite.VARIETY_AMO,
+                                                price=buy_price,
+                                                )
+
+                open_positions.append(instrument_token)
+                ticker.open_trade = True
+                return buy_order_id
+        except Exception as e:
+            print(e)
             return 0
+
 
     else:
         print(f"{tradingsymbol} is already an open position")
         return 0
 
-def sell_instrument(instrument_token, tradingsymbol, sell_price, open_trades, data_lock):
-    if instrument_token in open_trades:
-        try:
-            sell_order_id = kite.place_order(tradingsymbol=tradingsymbol,
-                            exchange=kite.EXCHANGE_NFO,
-                            transaction_type=kite.TRANSACTION_TYPE_SELL,
-                            quantity=25,
-                            order_type=kite.ORDER_TYPE_LIMIT,
-                            product=kite.PRODUCT_NRML,
-                            variety=kite.VARIETY_AMO,
-                            price=sell_price,
-                            )
-            with data_lock:
-                open_trades.remove(instrument_token)
 
-            return sell_order_id
-        except:
+def sell_instrument(instrument_token, open_positions, tradingsymbol, ticker, sell_price, data_lock):
+    if instrument_token in open_positions:
+        try:
+            with data_lock:
+                sell_order_id = kite.place_order(tradingsymbol=tradingsymbol,
+                                                exchange=kite.EXCHANGE_NFO,
+                                                transaction_type=kite.TRANSACTION_TYPE_SELL,
+                                                quantity=25,
+                                                order_type=kite.ORDER_TYPE_LIMIT,
+                                                product=kite.PRODUCT_NRML,
+                                                variety=kite.VARIETY_AMO,
+                                                price=sell_price,
+                                                )
+
+                open_positions.remove(instrument_token)
+                ticker.open_trade = False
+
+                return sell_order_id
+        except Exception as e:
+            print(e)
             return 0
+ 
     else:
         print(f"{tradingsymbol} is not an open position")
         return 0
-
 
 
 # Source for tech indicator : https://github.com/arkochhar/Technical-Indicators/blob/master/indicator/indicators.py
@@ -319,28 +330,29 @@ banknifty_instruments = nfo_instruments.loc[(
 tickertape = {}
 strikes = []
 
-# monthly_options = banknifty_instruments.loc[banknifty_instruments.strike == banknifty_close, [
-#     'instrument_token', 'tradingsymbol']].head(2)
-
-high_put_option = banknifty_instruments.loc[banknifty_instruments.strike == banknifty_high, [
-    'instrument_token', 'tradingsymbol']].head(6)
-
-low_call_option = banknifty_instruments.loc[banknifty_instruments.strike == banknifty_low, [
-    'instrument_token', 'tradingsymbol']].head(5)
-
-
-# high_put_instrument_token, high_put_tradingsymbol = high_put_option.values[1]
-# low_call_instrument_token, low_call_tradingsymbol = low_call_option.values[0]
-# tickertape[high_put_instrument_token] = high_put_tradingsymbol
-# tickertape[low_call_instrument_token] = low_call_tradingsymbol
-
-call_instrument_token, call_tradingsymbol = low_call_option.values[4]
-put_instrument_token, put_tradingsymbol = high_put_option.values[5]
-
+monthly_options = banknifty_instruments.loc[banknifty_instruments.strike == banknifty_close, [
+    'instrument_token', 'tradingsymbol']].head(2)
+call_instrument_token, call_tradingsymbol = monthly_options.values[0]
+put_instrument_token, put_tradingsymbol = monthly_options.values[1]
 tickertape[call_instrument_token] = call_tradingsymbol
 tickertape[put_instrument_token] = put_tradingsymbol
-
 watchlist = (call_instrument_token, put_instrument_token)
+
+# high_put_option = banknifty_instruments.loc[banknifty_instruments.strike == banknifty_high, [
+#     'instrument_token', 'tradingsymbol']].head(6)
+
+# low_call_option = banknifty_instruments.loc[banknifty_instruments.strike == banknifty_low, [
+#     'instrument_token', 'tradingsymbol']].head(5)
+
+
+
+# call_instrument_token, call_tradingsymbol = low_call_option.values[4]
+# put_instrument_token, put_tradingsymbol = high_put_option.values[5]
+
+# tickertape[call_instrument_token] = call_tradingsymbol
+# tickertape[put_instrument_token] = put_tradingsymbol
+
+# watchlist = (call_instrument_token, put_instrument_token)
 
 tickers = {}
 
@@ -365,8 +377,8 @@ open_trades = []
 
 
 print(f"Tickertape: {tickertape}")
-
 kws = kite.ticker()
+
 
 
 def on_candle(instrument_token):
@@ -414,10 +426,11 @@ def on_candle(instrument_token):
 
                                 last_traded_price = get_ltp(
                                     instrument_token)
-
-                                buy_order_id = buy_instrument(instrument_token, tradingsymbol, buy_price, data_lock)
+                                timestamp = get_timestamp()
+                                buy_order_id = buy_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+            
+                        
                                 ticker.open_trade = True
-
                                 print(
                                     f"Triple Supertrend Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
                                 orderbook.write(
@@ -434,7 +447,7 @@ def on_candle(instrument_token):
                                 #         quantity=25,
                                 #         order_type=kite.ORDER_TYPE_SL,
                                 #         product=kite.PRODUCT_NRML,
-                                #         variety=kite.VARIETY_REGULAR,
+                                #         variety=kite.VARIETY_AMO,
                                 #         trigger_price=last_traded_price-21,
                                 #         price=last_traded_price-21,
                                 #         )
@@ -451,84 +464,79 @@ def on_candle(instrument_token):
     # if instrument_token not in open_trades:
     if not ticker.open_trade:
         if not last_relative_candle.STX_21:
-            if penultimate_relative_candle.STX_13:
-                if penultimate_relative_candle.STX_13:
-                    if not last_relative_candle.STX_13:
-                        if not last_relative_candle.STX_8:
-                            if last_candle.STX_13:
-                                if last_candle.STX_8:
+            if not last_relative_candle.STX_13:
+                if not last_relative_candle.STX_8:
+                    if last_candle.STX_13:
+                        if last_candle.STX_8:
 
-                                    timestamp = get_timestamp()
-                                    buy_price = (last_candle.high +
-                                                last_candle.close) / 2
+                            timestamp = get_timestamp()
+                            buy_price = (last_candle.high +
+                                         last_candle.close) / 2
 
-                                    try:
-                                        print("try - 2")
+                            try:
+                                print("try - 2")
 
-                                        last_traded_price = get_ltp(
-                                            instrument_token)
+                                last_traded_price = get_ltp(
+                                    instrument_token)
+                                timestamp = get_timestamp()
+                                buy_order_id = buy_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+                               
+                               
+                                print(
+                                    f"Relative Supertrend Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
+                                orderbook.write(
+                                    f"\nRelative Supertrend: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
 
-                                        buy_order_id = buy_instrument(instrument_token, tradingsymbol, buy_price, data_lock)
+                            except Exception as e:
+                                print(e)
 
-            
-                                        ticker.open_trade = True
+                                print(
+                                    f"Error placing Relative Supertrend Buy Order for {tradingsymbol}")
 
-                                        print(
-                                            f"Relative Supertrend Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
-                                        orderbook.write(
-                                            f"\nRelative Supertrend: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
-
-                                    except Exception as e:
-                                        print(e)
-
-                                        print(
-                                            f"Error placing Relative Supertrend Buy Order for {tradingsymbol}")
-
-                                    print(
-                                        f"Relative Supertrend buy signal, {tradingsymbol} at {timestamp} buy price: {buy_price}")
-                                    ticker.log.write(
-                                        f"\nRelative Supertrend buy signal, {tradingsymbol} at {timestamp} buy price: {buy_price}")
-                                    tradebook.write(
-                                        f"\nRelative Supertrend buy signal, {tradingsymbol} at {timestamp} buy price: {buy_price}")
+                            print(
+                                f"Relative Supertrend buy signal, {tradingsymbol} at {timestamp} buy price: {buy_price}")
+                            ticker.log.write(
+                                f"\nRelative Supertrend buy signal, {tradingsymbol} at {timestamp} buy price: {buy_price}")
+                            tradebook.write(
+                                f"\nRelative Supertrend buy signal, {tradingsymbol} at {timestamp} buy price: {buy_price}")
 
     # if instrument_token not in open_trades:
     if not ticker.open_trade:
-        if penultimate_relative_candle.STX_13:
-            if penultimate_relative_candle.STX_13:
-                if not last_relative_candle.STX_13:
-                    if not last_relative_candle.STX_8:
-                        if last_candle.STX_13:
-                            if last_candle.STX_8:
 
-                                timestamp = get_timestamp()
-                                buy_price = (last_candle.high + last_candle.close) / 2
+        if not last_relative_candle.STX_13:
+            if not last_relative_candle.STX_8:
+                if last_candle.STX_13:
+                    if last_candle.STX_8:
 
-                                try:
-                                    print("try - 3")
+                        timestamp = get_timestamp()
+                        buy_price = (last_candle.high + last_candle.close) / 2
 
-                                    last_traded_price = get_ltp(
-                                        instrument_token)
+                        try:
+                            print("try - 3")
 
-                                    buy_order_id = buy_instrument(instrument_token, tradingsymbol, buy_price, data_lock)
-                                    ticker.open_trade = True
+                            last_traded_price = get_ltp(
+                                instrument_token)
+                            timestamp = get_timestamp()
+                            buy_order_id = buy_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+                            
+                         
+                            print(
+                                f"Relative Supertrend Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
+                            orderbook.write(
+                                f"\nRelative Supertrend: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
 
-                                    print(
-                                        f"Relative Supertrend Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
-                                    orderbook.write(
-                                        f"\nRelative Supertrend: Bought {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
+                        except Exception as e:
+                            print(e)
 
-                                except Exception as e:
-                                    print(e)
+                            print(
+                                f"Error placing Relative Supertrend Buy Order for {tradingsymbol}")
 
-                                    print(
-                                        f"Error placing Relative Supertrend Buy Order for {tradingsymbol}")
-
-                                print(
-                                    f"Relative Supertrend buy signal, {tradingsymbol} at {timestamp} buy price: {buy_price}")
-                                ticker.log.write(
-                                    f"\nRelative Supertrend buy signal, {tradingsymbol} at {timestamp} buy price: {buy_price}")
-                                tradebook.write(
-                                    f"\nRelative Supertrend buy signal, {tradingsymbol} at {timestamp} buy price: {buy_price}")
+                        print(
+                            f"Relative Supertrend buy signal, {tradingsymbol} at {timestamp} buy price: {buy_price}")
+                        ticker.log.write(
+                            f"\nRelative Supertrend buy signal, {tradingsymbol} at {timestamp} buy price: {buy_price}")
+                        tradebook.write(
+                            f"\nRelative Supertrend buy signal, {tradingsymbol} at {timestamp} buy price: {buy_price}")
 
     # if instrument_token not in open_trades:
     if not ticker.open_trade:
@@ -545,9 +553,9 @@ def on_candle(instrument_token):
 
                             last_traded_price = get_ltp(instrument_token)
                             timestamp = get_timestamp()
-                            buy_order_id = buy_instrument(instrument_token, tradingsymbol, buy_price, data_lock)
-                            ticker.open_trade = True
-
+                            buy_order_id = buy_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+                            
+                      
                             print(
                                 f"Triple RSI Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
                             orderbook.write(
@@ -567,42 +575,38 @@ def on_candle(instrument_token):
 
     # elif instrument_token in open_trades:
     elif ticker.open_trade:
-        if penultimate_candle.STX_13:
-            if not last_candle.STX_8:
-                if not last_candle.STX_13:
+        if not last_candle.STX_13:
 
-                    timestamp = get_timestamp()
-                    sell_price = (last_candle.low + last_candle.close) / 2
+            timestamp = get_timestamp()
+            sell_price = (last_candle.low + last_candle.close) / 2
 
-                    try:
-                        print("try - 5")
+            try:
+                print("try - 5")
 
-                        last_traded_price = get_ltp(instrument_token)
+                last_traded_price = get_ltp(instrument_token)
+                timestamp = get_timestamp()
+                sell_order_id = sell_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+               
+ 
+                print(
+                    f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
+                orderbook.write(
+                    f"\nTriple Supertrend: Supertrend 13 - Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
+            except Exception as e:
+                print(e)
 
-                        sell_order_id = sell_instrument(instrument_token, tradingsymbol, sell_price, data_lock)
+                print(
+                    f"Error placing Triple Supertrend 13 Sell Order for {tradingsymbol}")
 
-                        ticker.open_trade = False
-
-                        print(
-                            f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
-                        orderbook.write(
-                            f"\nTriple Supertrend: Supertrend 13 - Sold {tradingsymbol} at {timestamp} ltp: {last_traded_price}")
-                    except Exception as e:
-                        print(e)
-
-                        print(
-                            f"Error placing Triple Supertrend 13 Sell Order for {tradingsymbol}")
-
-                    print(
-                        f"Triple Supertrend 13 sell signal, {tradingsymbol} at {timestamp} sell price: {sell_price}")
-                    ticker.log.write(
-                        f"\nTriple Supertrend 13 sell signal, {tradingsymbol} at {timestamp} sell price: {sell_price}")
-                    tradebook.write(
-                        f"\nTriple Supertrend 13 sell signal, {tradingsymbol} at {timestamp} sell price: {sell_price}")
+            print(
+                f"Triple Supertrend 13 sell signal, {tradingsymbol} at {timestamp} sell price: {sell_price}")
+            ticker.log.write(
+                f"\nTriple Supertrend 13 sell signal, {tradingsymbol} at {timestamp} sell price: {sell_price}")
+            tradebook.write(
+                f"\nTriple Supertrend 13 sell signal, {tradingsymbol} at {timestamp} sell price: {sell_price}")
 
     # elif instrument_token in open_trades:
     elif ticker.open_trade:
-
         if last_relative_candle.STX_13:
             if last_relative_candle.STX_8:
 
@@ -613,10 +617,10 @@ def on_candle(instrument_token):
                     print("try - 6")
 
                     last_traded_price = get_ltp(instrument_token)
-
-                    sell_order_id = sell_instrument(instrument_token, tradingsymbol, sell_price, data_lock)
-                    ticker.open_trade = False
-
+                    timestamp = get_timestamp()
+                    sell_order_id = sell_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+                    
+                    
                     print(
                         f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                     orderbook.write(
@@ -645,10 +649,10 @@ def on_candle(instrument_token):
                     print("try - 7")
 
                     last_traded_price = get_ltp(instrument_token)
-
-                    sell_order_id = sell_instrument(instrument_token, tradingsymbol, sell_price, data_lock)
-                    ticker.open_trade = False
-
+                    timestamp = get_timestamp()
+                    sell_order_id = sell_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+                  
+                    
                     print(
                         f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                     orderbook.write(
@@ -672,15 +676,14 @@ def on_candle(instrument_token):
 
                 timestamp = get_timestamp()
                 sell_price = (last_candle.low + last_candle.close) / 2
-
                 try:
                     print("try - 8")
 
                     last_traded_price = get_ltp(instrument_token)
-
-                    sell_order_id = sell_instrument(instrument_token, tradingsymbol, sell_price, data_lock)
-                    ticker.open_trade = False
-
+                    timestamp = get_timestamp()
+                    sell_order_id = sell_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+                    
+                   
                     print(
                         f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                     orderbook.write(
