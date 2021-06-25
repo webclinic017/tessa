@@ -87,7 +87,7 @@ def get_ltp(instrument_token):
 data_lock = Lock()
 
 
-def buy_instrument(instrument_token, open_positions, tradingsymbol, ticker, buy_price, data_lock):
+def buy_instrument(instrument_token, tradingsymbol, ticker, open_positions, buy_price, data_lock):
     if instrument_token not in open_positions:
         try:
             with data_lock:
@@ -114,7 +114,7 @@ def buy_instrument(instrument_token, open_positions, tradingsymbol, ticker, buy_
         return 0
 
 
-def sell_instrument(instrument_token, open_positions, tradingsymbol, ticker, sell_price, data_lock):
+def sell_instrument(instrument_token, tradingsymbol, ticker, open_positions, sell_price, data_lock):
     if instrument_token in open_positions:
         try:
             with data_lock:
@@ -372,7 +372,7 @@ orderbook = open("orderbook.txt", "w")
 
 instrument_token = ''
 ltp = ''
-open_positions = True
+open_positions = []
 open_trades = []
 
 
@@ -427,7 +427,7 @@ def on_candle(instrument_token):
                                 last_traded_price = get_ltp(
                                     instrument_token)
                                 timestamp = get_timestamp()
-                                buy_order_id = buy_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+                                buy_order_id = buy_instrument(instrument_token, tradingsymbol, ticker, open_positions, last_traded_price, data_lock)
         
                                 print(
                                     f"Triple Supertrend Buy Order placed for {tradingsymbol} succesfully orders {buy_order_id}")
@@ -477,7 +477,7 @@ def on_candle(instrument_token):
                                 last_traded_price = get_ltp(
                                     instrument_token)
                                 timestamp = get_timestamp()
-                                buy_order_id = buy_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+                                buy_order_id = buy_instrument(instrument_token, tradingsymbol, ticker, open_positions, last_traded_price, data_lock)
                                
                                
                                 print(
@@ -515,7 +515,7 @@ def on_candle(instrument_token):
                             last_traded_price = get_ltp(
                                 instrument_token)
                             timestamp = get_timestamp()
-                            buy_order_id = buy_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+                            buy_order_id = buy_instrument(instrument_token, tradingsymbol, ticker, open_positions, last_traded_price, data_lock)
                             
                          
                             print(
@@ -551,7 +551,7 @@ def on_candle(instrument_token):
 
                             last_traded_price = get_ltp(instrument_token)
                             timestamp = get_timestamp()
-                            buy_order_id = buy_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+                            buy_order_id = buy_instrument(instrument_token, tradingsymbol, ticker, open_positions, last_traded_price, data_lock)
                             
                       
                             print(
@@ -583,7 +583,7 @@ def on_candle(instrument_token):
 
                 last_traded_price = get_ltp(instrument_token)
                 timestamp = get_timestamp()
-                sell_order_id = sell_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+                sell_order_id = buy_instrument(instrument_token, tradingsymbol, ticker, open_positions, last_traded_price, data_lock)
                
  
                 print(
@@ -616,7 +616,7 @@ def on_candle(instrument_token):
 
                     last_traded_price = get_ltp(instrument_token)
                     timestamp = get_timestamp()
-                    sell_order_id = sell_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+                    sell_order_id = buy_instrument(instrument_token, tradingsymbol, ticker, open_positions, last_traded_price, data_lock)
                     
                     
                     print(
@@ -648,7 +648,7 @@ def on_candle(instrument_token):
 
                     last_traded_price = get_ltp(instrument_token)
                     timestamp = get_timestamp()
-                    sell_order_id = sell_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+                    sell_order_id = buy_instrument(instrument_token, tradingsymbol, ticker, open_positions, last_traded_price, data_lock)
                   
                     
                     print(
@@ -679,9 +679,8 @@ def on_candle(instrument_token):
 
                     last_traded_price = get_ltp(instrument_token)
                     timestamp = get_timestamp()
-                    sell_order_id = sell_instrument(instrument_token, open_positions, tradingsymbol, ticker, last_traded_price, data_lock)
+                    sell_order_id = buy_instrument(instrument_token, tradingsymbol, ticker, open_positions, last_traded_price, data_lock)
                     
-                   
                     print(
                         f"Sell Order placed for {tradingsymbol} succesfully orders. Order ID: {sell_order_id}")
                     orderbook.write(
