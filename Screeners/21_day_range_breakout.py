@@ -46,7 +46,7 @@ for instrument_token in watchlist:
     try:
         historical_data = pd.DataFrame(kite.historical_data(
             instrument_token, today - timedelta(days=34), today, "day"))
-        historical_data = historical_data.tail(-1).tail(21)
+        historical_data = historical_data.head(-1).tail(21)
         
         todays_ohlc = kite.ohlc(instrument_token)[
             str(instrument_token)]
